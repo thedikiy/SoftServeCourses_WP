@@ -5,21 +5,23 @@
 <hibernate-configuration>
     <session-factory>
         <property
-                name="hibernate.connection.url">jdbc:mysql://localhost:3306/test_db?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC
+                name="hibernate.connection.url">jdbc:mysql://localhost:3306/bus_manager?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC
         </property>
         <property
                 name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver
         </property>
         <!-- <property name="connection.username"/> -->
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">4253532MaX</property>
+        <property name="hibernate.connection.password">4253532@MaX</property>
 
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL55Dialect</property>
         <!-- DB schema will be updated if needed -->
-        <property name="hbm2ddl.auto">create-drop</property>
-        <property name="show_sql">true</property>
+        <property name="hbm2ddl.auto">update</property>
+        <property name="show_sql">false</property>
 
         <mapping class="com.softserve.edu.entity.Bus"/>
         <mapping class="com.softserve.edu.entity.Journey"/>
+        <mapping class="com.softserve.edu.entity.Driver"/>
+        <mapping class="com.softserve.edu.entity.Passenger"/>
     </session-factory>
 </hibernate-configuration>

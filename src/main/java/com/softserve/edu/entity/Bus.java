@@ -8,12 +8,17 @@ import java.util.Set;
 public class Bus {
     @Id
     @GeneratedValue
+    @Column(name = "BUS_ID")
     private int busID;
+    @Column(name = "BUS_MODEL")
     private String bus_model;
+    @Column(name = "REGISTRATION_NUMBER")
     private String registrationNumber;
+    @Column(name = "LAST_TI")
     private Date lastTI;
+    @Column(name = "NEXT_TI")
     private Date nextTI;
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "bus")
     private Set<Journey> journeys;
 
     public Set<Journey> getJourneys() {

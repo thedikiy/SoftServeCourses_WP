@@ -1,15 +1,18 @@
 package com.softserve.edu.entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Set;
-
+@Entity
 public class Passenger {
     @Id
     @GeneratedValue
+    @Column(name = "PASSENGER_ID")
     private int passengerID;
+    @Column(name = "PASSENGER_NAME")
     private String passengerName;
+    @Column(name = "PASSENGER_SURNAME")
     private String passengerSurname;
+    @ManyToMany(mappedBy = "passengers")
     private Set<Journey> journeys;
 
     public int getPassengerID() {

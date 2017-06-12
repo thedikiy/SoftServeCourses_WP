@@ -1,19 +1,26 @@
 package com.softserve.edu.entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
+@Entity
 public class Driver {
     @Id
     @GeneratedValue
+    @Column(name = "DRIVER_ID")
     private int driverID;
+    @Column(name = "DRIVER_NAME")
     private String driverName;
+    @Column(name = "DRIVER_SURNAME")
     private String driverSurname;
+    @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
-    private Date licanceExpire;
+    @Column(name = "LICENCE_EXPIRE")
+    private Date licenceExpire;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "driver")
     private Set<Journey> journeys;
+
 
     public Set<Journey> getJourneys() {
         return journeys;
@@ -55,11 +62,11 @@ public class Driver {
         this.phoneNumber = phoneNumber;
     }
 
-    public Date getLicanceExpire() {
-        return licanceExpire;
+    public Date getLicenceExpire() {
+        return licenceExpire;
     }
 
-    public void setLicanceExpire(Date licanceExpire) {
-        this.licanceExpire = licanceExpire;
+    public void setLicenceExpire(Date licanceExpire) {
+        this.licenceExpire = licanceExpire;
     }
 }
