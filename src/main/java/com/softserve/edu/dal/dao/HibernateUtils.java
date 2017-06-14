@@ -1,4 +1,4 @@
-package com.softserve.edu.dao;
+package com.softserve.edu.dal.dao;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

@@ -3,7 +3,7 @@ package com.softserve.edu.entity;
 import javax.persistence.*;
 import java.util.Set;
 @Entity
-public class Passenger {
+public class Passenger implements IEntity {
     @Id
     @GeneratedValue
     @Column(name = "PASSENGER_ID")

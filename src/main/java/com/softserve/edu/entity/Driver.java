@@ -5,9 +5,12 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-public class Driver {
+public class Driver implements IEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(
+            strategy = GenerationType.AUTO, generator = "driver_seq_gen")
+    @SequenceGenerator(
+            name = "driver_seq_gen", sequenceName = "driver_seq")
     @Column(name = "DRIVER_ID")
     private int driverID;
     @Column(name = "DRIVER_NAME")
@@ -18,7 +21,7 @@ public class Driver {
     private String phoneNumber;
     @Column(name = "LICENCE_EXPIRE")
     private Date licenceExpire;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "driver")
+    @OneToMany(mappedBy = "driver", fetch = FetchType.EAGER)
     private Set<Journey> journeys;
 
 

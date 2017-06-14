@@ -4,20 +4,42 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 @Entity
-public class Journey {
+public class Journey implements IEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "journ_seq_gen")
+    @SequenceGenerator(name = "journ_seq_gen", sequenceName = "journ_seq")
     @Column(name = "JOURNEY_ID")
     private int journeyID;
     @Column(name = "LEAVING_DATE")
     private Date leavingDate;
     @Column(name = "ARRIVING_DATE")
     private Date arrivingDate;
+    @Column(name = "FROM_PLACE")
+    private String fromPlace;
+    @Column(name = "DESTINATION")
+    private String destination;
+
+    public String getFromPlace() {
+        return fromPlace;
+    }
+
+    public void setFromPlace(String from) {
+        this.fromPlace = from;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
     @ManyToOne
     @JoinColumn(name = "BUS_ID")
     private Bus bus;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "DRIVER_ID")
     private Driver driver;
 
@@ -48,6 +70,7 @@ public class Journey {
 
     public void setDriver(Driver driver) {
         this.driver = driver;
+        driver.getJourneys().add(this);
     }
 
     public Bus getBus() {
@@ -56,6 +79,7 @@ public class Journey {
 
     public void setBus(Bus bus) {
         this.bus = bus;
+        bus.getJourneys().add(this);
     }
 
     public Date getLeavingDate() {
