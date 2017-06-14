@@ -10,7 +10,7 @@
     <title>Edit journey</title>
 </head>
 <body>
-<h4><a href="/journeylist">Назад</a></h4>
+<button class="btn"><a href="/journeylist">Назад</a></button>
 <form action="/journey/edit" method="post">
     <input type="hidden" name="journeyID" value="${journey.journeyID}">
     <input name="fromPlace" type="text" value="${journey.fromPlace}">Место

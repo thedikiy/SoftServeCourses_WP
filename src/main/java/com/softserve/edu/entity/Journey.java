@@ -70,7 +70,6 @@ public class Journey implements IEntity {
 
     public void setDriver(Driver driver) {
         this.driver = driver;
-        driver.getJourneys().add(this);
     }
 
     public Bus getBus() {
@@ -79,7 +78,6 @@ public class Journey implements IEntity {
 
     public void setBus(Bus bus) {
         this.bus = bus;
-        bus.getJourneys().add(this);
     }
 
     public Date getLeavingDate() {

@@ -11,7 +11,7 @@
 </head>
 <body>
 <h1>Список водителей</h1>
-<h4><a href="/">Назад</a></h4>
+<button class="btn"><a href="/">Назад</a></button>
 <div class="row">
 <table>
     <thead>
@@ -33,6 +33,6 @@
     </tbody>
 </table>
 </div>
-<h4><a href="/driver/edit">Добавить...</a></h4>
+<button class="btn"><a href="/driver/edit">Добавить...</a></button>
 </body>
 </html>

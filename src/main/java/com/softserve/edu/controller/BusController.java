@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class BusController {
@@ -20,16 +23,15 @@ public class BusController {
 
     @RequestMapping("/buslist")
     public String getAllBuses(Model model) {
-        List<Bus> buses = busService.getAllElements();
+        Set<Bus>buses = new HashSet<Bus>(busService.getAllElements());
         model.addAttribute("buses", buses);
         return "/buses/buslist";
     }
 
     @RequestMapping("/bus")
     public String showSelectedBusInfo(
-            @RequestParam("id") String busID, Model model) {
-        Bus currentBus = (Bus) busService.getElementByID(
-                Integer.parseInt(busID));
+            @RequestParam("id")int busID, Model model) {
+        Bus currentBus = (Bus) busService.getElementByID(busID);
         model.addAttribute("bus", currentBus);
         return "/buses/bus";
     }
@@ -60,4 +62,6 @@ public class BusController {
         model.addAttribute("bus",bus);
         return "/buses/bus";
     }
+
+
 }

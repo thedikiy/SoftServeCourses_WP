@@ -10,13 +10,14 @@
 </head>
 <body>
 <h1>Рейс №${journey.journeyID}</h1>
-<h4><a href="/journey_list">Назад</a></h4>
+<button class="btn"><a href="/journey_list">Назад</a></button>
 <p>Место отправления: ${journey.fromPlace}</p>
 <p>Место прибытия: ${journey.destination}</p>
 <a href="/driver?id=${journey.driver.driverID}">Водитель: ${journey.driver.driverName}
-${journey.driver.driverSurname}</a>
+    ${journey.driver.driverSurname}</a>
 <p><a href="/bus?id=${journey.bus.busID}">Автобус:
-${journey.bus.busModel}</a></p>
-<h4><a href="/journey/edit?id=${journey.journeyID}">Изменить...</a></h4>
+    ${journey.bus.busModel}</a></p>
+<button class="btn">
+    <a href="/journey/edit?id=${journey.journeyID}">Изменить...</a></button>
 </body>
 </html>

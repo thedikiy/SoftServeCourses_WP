@@ -9,7 +9,7 @@
     <title>Edit bus</title>
 </head>
 <body>
-<h4><a href="/buslist">Назад</a></h4>
+<button class="btn"><a href="/buslist">Назад</a></button>
 <form action="/bus/edit" method="post">
     <input type="hidden" name="busID" value="${bus.busID}">
     <div class="form_class"><input name="busModel" type="text"

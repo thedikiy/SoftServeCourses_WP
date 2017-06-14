@@ -11,7 +11,7 @@
 </head>
 <body>
 <h1>Список рейсов</h1>
-<a href="/">Назад</a>
+<button class="btn"><a href="/">Назад</a></button>
 <div class="row">
 <table>
     <thead>
@@ -39,6 +39,6 @@
     </tbody>
 </table>
 </div>
-<a href="/journey/edit">Добавить...</a>
+<button class="btn"> <a href="/journey/edit">Добавить...</a></button>
 </body>
 </html>

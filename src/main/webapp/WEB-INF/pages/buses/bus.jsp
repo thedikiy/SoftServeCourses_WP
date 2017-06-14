@@ -11,14 +11,14 @@
 </head>
 <body>
 <h1>Автобус №${bus.busID}</h1>
-<h4><a href="/buslist">Назад</a></h4>
+<button class="btn"><a href="/buslist">Назад</a></button>
 <p>Модель: ${bus.busModel}</p>
 <p>Регистрационный номер: ${bus.registrationNumber}</p>
 <p>Дата последнего ТО: ${bus.lastTI}</p>
 <p>Дата следующего ТО: ${bus.nextTI}</p>
 <p>Рейсы:</p>
-<p><c:forEach items="${bus.journeys}" var="journey">${journey.fromPlace}
-${journey.destination}</c:forEach></p>
-<h4><a href="/bus/edit?id=${bus.busID}">Изменить...</a></h4>
+<c:forEach items="${bus.journeys}" var="journey"><p>${journey.fromPlace}
+${journey.destination}</p></c:forEach>
+<button class="btn"><a href="/bus/edit?id=${bus.busID}" >Изменить...</a></button>
 </body>
 </html>

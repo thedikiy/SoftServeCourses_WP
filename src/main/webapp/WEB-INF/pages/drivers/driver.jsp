@@ -9,8 +9,8 @@
     <title>BUS</title>
 </head>
 <body>
-<h1>Водитель ${driver.driverID}</h1>
-<a href="/driver_list">Назад</a>
+Водитель ${driver.driverID}
+<button class="btn"><a href="/driver_list">Назад</a></button>
 <p>Имя: ${driver.driverName}</p>
 <p>Фамилия: ${driver.driverSurname}</p>
 <p>Номер телефона: ${driver.phoneNumber}</p>
@@ -18,6 +18,6 @@
 <p>Рейсы:</p>
 <p><c:forEach items="${driver.journeys}" var="journey">${journey.fromPlace}
     ${journey.destination}</c:forEach></p>
-<a href="/driver/edit?id=${driver.driverID}">Изменить...</a>
+<button class="btn"><a href="/driver/edit?id=${driver.driverID}">Изменить...</a></button>
 </body>
 </html>

@@ -9,7 +9,7 @@
     <title>Edit driver</title>
 </head>
 <body>
-<h4></h4><a href="/driver_list">Назад</a></h4>
+<button class="btn"><a href="/driver_list">Назад</a></button>
 <form action="/driver/edit" method="post">
     <input type="hidden" name="driverID" value="${driver.driverID}">
     <input name="driverName" type="text" value="${driver.driverName}">Имя
