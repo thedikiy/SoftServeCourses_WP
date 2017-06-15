@@ -4,6 +4,7 @@ package com.softserve.edu.dal.dao;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javax.persistence.Query;
 import java.util.List;
 
 public class ElementDAOImpl<E> implements ElementDAO<E> {
@@ -47,7 +48,7 @@ public class ElementDAOImpl<E> implements ElementDAO<E> {
         try {
             session = HibernateUtils.getSessionFactory().openSession();
             element =
-                    session.get(elementClass,elementID);
+                    session.get(elementClass, elementID);
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
@@ -62,7 +63,8 @@ public class ElementDAOImpl<E> implements ElementDAO<E> {
         List<E> eList;
         try {
             session = HibernateUtils.getSessionFactory().openSession();
-            eList = session.createCriteria(elementClass).list();
+            Query query = session.createQuery("From " + elementClass.getName());
+            eList = query.getResultList();
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();

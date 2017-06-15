@@ -2,6 +2,7 @@ package com.softserve.edu.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 @Entity
 public class Journey implements IEntity {
@@ -43,10 +44,10 @@ public class Journey implements IEntity {
     @JoinColumn(name = "DRIVER_ID")
     private Driver driver;
 
-    @ManyToMany()
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "JOURNEYS_PASSENGERS",joinColumns = @JoinColumn(name =
             "PASSENGERS"),inverseJoinColumns = @JoinColumn(name = "JOURNEYS"))
-    private Set<Passenger> passengers;
+    private Set<Passenger> passengers = new HashSet<Passenger>();
 
     public Set<Passenger> getPassengers() {
         return passengers;

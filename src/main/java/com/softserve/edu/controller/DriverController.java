@@ -20,7 +20,7 @@ public class DriverController {
     DriverService driverService;
     @RequestMapping("/driver_list")
     public String getAllDrivers(Model model) {
-        Set<Driver> drivers = new HashSet<Driver>(driverService.getAllElements());
+        List<Driver> drivers = driverService.getAllElements();
         model.addAttribute(drivers);
         return "/drivers/driver_list";
     }
@@ -35,7 +35,7 @@ public class DriverController {
     }
 
     @RequestMapping(value = "/driver/edit",method = RequestMethod.GET)
-    public String showdriver(
+    public String showDriver(
             @RequestParam(value = "id",required = false) String driverID, Model
             model) {
         Driver driver = null;
@@ -49,7 +49,7 @@ public class DriverController {
     }
 
     @RequestMapping(value = "/driver/edit",method = RequestMethod.POST)
-    public String editOrCreatedriver(
+    public String editOrCreateDriver(
             @ModelAttribute Driver driver, Model model) {
         if (driver.getDriverID() == 0) {
             driverService.addElement(driver);

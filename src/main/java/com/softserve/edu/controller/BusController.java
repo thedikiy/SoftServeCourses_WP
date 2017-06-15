@@ -10,11 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 public class BusController {
@@ -23,9 +19,9 @@ public class BusController {
 
     @RequestMapping("/buslist")
     public String getAllBuses(Model model) {
-        Set<Bus>buses = new HashSet<Bus>(busService.getAllElements());
+        List<Bus>buses = busService.getAllElements();
         model.addAttribute("buses", buses);
-        return "/buses/buslist";
+        return "buses/bus_list";
     }
 
     @RequestMapping("/bus")

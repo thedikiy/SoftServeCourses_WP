@@ -12,7 +12,7 @@
         </property>
         <!-- <property name="connection.username"/> -->
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">4253532MaX</property>
+        <property name="hibernate.connection.password">4253532@MaX</property>
 
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL55Dialect</property>
         <!-- DB schema will be updated if needed -->

@@ -10,7 +10,7 @@
     <title>Edit journey</title>
 </head>
 <body>
-<button class="btn"><a href="/journeylist">Назад</a></button>
+<button class="btn"><a href="/journey_list">Назад</a></button>
 <form action="/journey/edit" method="post">
     <input type="hidden" name="journeyID" value="${journey.journeyID}">
     <input name="fromPlace" type="text" value="${journey.fromPlace}">Место
@@ -26,6 +26,13 @@
     <select name="busID" size=1 >
         <c:forEach items="${buses}" var="bus">
             <option name="bus" value="${bus.busID}">${bus.busModel}</option>
+        </c:forEach>
+    </select>Автобус<br/>
+    <select name="passengerID" size=1 >
+        <c:forEach items="${passengers}" var="passenger">
+            <option name="passenger"
+                    value="${passenger.passengerID}">
+                    ${passenger.passengerName} ${passenger.passengerSurname}</option>
         </c:forEach>
     </select>Автобус<br/>
     <input type="submit" value="submit">

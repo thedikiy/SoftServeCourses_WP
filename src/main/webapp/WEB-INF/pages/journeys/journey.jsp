@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <html>
@@ -17,6 +18,11 @@
     ${journey.driver.driverSurname}</a>
 <p><a href="/bus?id=${journey.bus.busID}">Автобус:
     ${journey.bus.busModel}</a></p>
+<p>Пассажиры:</p>
+<c:forEach items="${journey.passengers}" var="passanger">
+   <p><a href="/passenger?id=${passanger.passengerID}">${passanger.passengerName}
+           ${passanger.passengerSurname}</a></p>
+</c:forEach>
 <button class="btn">
     <a href="/journey/edit?id=${journey.journeyID}">Изменить...</a></button>
 </body>

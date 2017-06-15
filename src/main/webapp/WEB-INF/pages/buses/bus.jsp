@@ -10,15 +10,16 @@
     <title>BUS</title>
 </head>
 <body>
-<h1>Автобус №${bus.busID}</h1>
+<h1 class="bus">Автобус №${bus.busID}</h1>
 <button class="btn"><a href="/buslist">Назад</a></button>
 <p>Модель: ${bus.busModel}</p>
 <p>Регистрационный номер: ${bus.registrationNumber}</p>
 <p>Дата последнего ТО: ${bus.lastTI}</p>
 <p>Дата следующего ТО: ${bus.nextTI}</p>
 <p>Рейсы:</p>
-<c:forEach items="${bus.journeys}" var="journey"><p>${journey.fromPlace}
-${journey.destination}</p></c:forEach>
-<button class="btn"><a href="/bus/edit?id=${bus.busID}" >Изменить...</a></button>
+<c:forEach items="${bus.journeys}" var="journey"><p><a
+        href="${journey.journeyID}">${journey.fromPlace}
+        ${journey.destination}</a></p></c:forEach>
+<button class="btn"><a href="/bus/edit?id=${bus.busID}">Изменить...</a></button>
 </body>
 </html>

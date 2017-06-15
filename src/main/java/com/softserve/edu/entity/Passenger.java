@@ -12,7 +12,7 @@ public class Passenger implements IEntity {
     private String passengerName;
     @Column(name = "PASSENGER_SURNAME")
     private String passengerSurname;
-    @ManyToMany(mappedBy = "passengers")
+    @ManyToMany(mappedBy = "passengers", fetch = FetchType.EAGER)
     private Set<Journey> journeys;
 
     public int getPassengerID() {
