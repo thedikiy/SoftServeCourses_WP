@@ -1,6 +1,5 @@
 package com.softserve.edu.application;
 
-import com.softserve.edu.dal.dao.BusDAO;
 import com.softserve.edu.entity.Bus;
 import com.softserve.edu.entity.Driver;
 import com.softserve.edu.entity.Journey;

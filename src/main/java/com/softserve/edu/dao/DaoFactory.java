@@ -1,8 +1,8 @@
-package com.softserve.edu.dal.dao;
+package com.softserve.edu.dao;
 
 public class DaoFactory {
     private static DaoFactory instance;
-    private static final String DAO_CLASS_PATH = "com.softserve.edu.dal.dao.";
+    private static final String DAO_CLASS_PATH = "com.softserve.edu.dao.";
 
     public static synchronized DaoFactory getInstance() {
         if (instance == null) {

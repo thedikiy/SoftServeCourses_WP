@@ -1,4 +1,4 @@
-package com.softserve.edu.dal.dao;
+package com.softserve.edu.dao;
 
 
 import org.hibernate.Session;

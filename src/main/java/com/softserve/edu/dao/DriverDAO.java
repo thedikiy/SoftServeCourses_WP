@@ -1,4 +1,4 @@
-package com.softserve.edu.dal.dao;
+package com.softserve.edu.dao;
 
 import com.softserve.edu.entity.Driver;
 import org.springframework.stereotype.Repository;

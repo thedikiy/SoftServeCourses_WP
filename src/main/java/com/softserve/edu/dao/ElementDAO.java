@@ -1,6 +1,4 @@
-package com.softserve.edu.dal.dao;
-
-import org.hibernate.Session;
+package com.softserve.edu.dao;
 
 import java.util.List;
 

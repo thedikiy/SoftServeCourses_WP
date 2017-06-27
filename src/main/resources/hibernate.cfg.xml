@@ -5,7 +5,7 @@
 <hibernate-configuration>
     <session-factory>
         <property
-                name="hibernate.connection.url">jdbc:mysql://localhost:3306/bus_manager?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC
+                name="hibernate.connection.url">jdbc:mysql://localhost:3306/bus_manager
         </property>
         <property
                 name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver

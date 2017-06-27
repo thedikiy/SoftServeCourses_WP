@@ -7,8 +7,7 @@ import java.util.Set;
 @Entity
 public class Journey implements IEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "journ_seq_gen")
-    @SequenceGenerator(name = "journ_seq_gen", sequenceName = "journ_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "JOURNEY_ID")
     private int journeyID;
     @Column(name = "LEAVING_DATE")

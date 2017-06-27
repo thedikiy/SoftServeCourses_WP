@@ -1,5 +1,7 @@
 package com.softserve.edu.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -7,8 +9,7 @@ import java.util.Set;
 @Entity
 public class Bus implements IEntity{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "bus_seq_gen")
-    @SequenceGenerator(name = "bus_seq_gen", sequenceName = "bus_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BUS_ID")
     private int busID;
     @Column(name = "BUS_MODEL")
@@ -16,8 +17,10 @@ public class Bus implements IEntity{
     @Column(name = "REGISTRATION_NUMBER")
     private String registrationNumber;
     @Column(name = "LAST_TI")
+    @Temporal(TemporalType.DATE)
     private Date lastTI;
     @Column(name = "NEXT_TI")
+    @Temporal(TemporalType.DATE)
     private Date nextTI;
     @OneToMany(mappedBy = "bus", fetch = FetchType.EAGER)
     private Set<Journey> journeys;

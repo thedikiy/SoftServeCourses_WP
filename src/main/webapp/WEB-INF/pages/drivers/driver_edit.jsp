@@ -16,8 +16,8 @@
     водителя*<Br>
     <input name="driverSurname" type="text" value="${driver.driverSurname}">
     Фамилия водителя*<Br>
-    <input type="date" value="${driver.licenceExpire}">Лицензия истекает<Br>
-    <input  name="phoneNumber" type="text" value="${driver.phoneNumber}">Номер
+    <input type="date" name="licenceExpire" value=${driver.licenceExpire}>Лицензия истекает<Br>
+    <input name="phoneNumber" type="text" value="${driver.phoneNumber}">Номер
     телефона<Br>
     <input type="submit" value="submit">
 </form>

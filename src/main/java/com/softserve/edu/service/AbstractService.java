@@ -1,6 +1,6 @@
 package com.softserve.edu.service;
 
-import com.softserve.edu.dal.dao.DaoFactory;
+import com.softserve.edu.dao.DaoFactory;
 import com.softserve.edu.entity.IEntity;
 
 import java.util.List;

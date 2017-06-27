@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <html>
@@ -14,8 +15,9 @@
 <button class="btn"><a href="/buslist">Назад</a></button>
 <p>Модель: ${bus.busModel}</p>
 <p>Регистрационный номер: ${bus.registrationNumber}</p>
-<p>Дата последнего ТО: ${bus.lastTI}</p>
-<p>Дата следующего ТО: ${bus.nextTI}</p>
+<p>Дата последнего ТО:
+    <fmt:formatDate value="${bus.lastTI}" pattern="yyyy-MM-dd"/> </p>
+<p>Дата следующего ТО: <fmt:formatDate value="${bus.nextTI}" pattern="yyyy-MM-dd"/></p>
 <p>Рейсы:</p>
 <c:forEach items="${bus.journeys}" var="journey"><p><a
         href="${journey.journeyID}">${journey.fromPlace}

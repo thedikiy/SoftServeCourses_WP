@@ -8,9 +8,7 @@ import java.util.Set;
 public class Driver implements IEntity {
     @Id
     @GeneratedValue(
-            strategy = GenerationType.AUTO, generator = "driver_seq_gen")
-    @SequenceGenerator(
-            name = "driver_seq_gen", sequenceName = "driver_seq")
+            strategy = GenerationType.IDENTITY)
     @Column(name = "DRIVER_ID")
     private int driverID;
     @Column(name = "DRIVER_NAME")
@@ -20,6 +18,7 @@ public class Driver implements IEntity {
     @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
     @Column(name = "LICENCE_EXPIRE")
+    @Temporal(TemporalType.DATE)
     private Date licenceExpire;
     @OneToMany(mappedBy = "driver", fetch = FetchType.EAGER)
     private Set<Journey> journeys;

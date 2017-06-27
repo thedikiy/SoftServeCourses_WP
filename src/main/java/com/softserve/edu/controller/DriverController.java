@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 @Controller
-public class DriverController {
+public class DriverController extends AbstractController {
     @Autowired
     DriverService driverService;
     @RequestMapping("/driver_list")

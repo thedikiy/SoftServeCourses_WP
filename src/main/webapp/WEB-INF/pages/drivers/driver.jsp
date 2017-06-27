@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <link rel="stylesheet"
@@ -15,7 +16,8 @@
 <p>Имя: ${driver.driverName}</p>
 <p>Фамилия: ${driver.driverSurname}</p>
 <p>Номер телефона: ${driver.phoneNumber}</p>
-<p>Лицезия оканчивается: ${driver.licenceExpire}</p>
+<p>Лицезия оканчивается:
+    <fmt:formatDate value="${driver.licenceExpire}" pattern="yyyy-MM-dd"/> </p>
 <p>Рейсы:</p>
 <c:forEach items="${driver.journeys}" var="journey"><p><a
         href="/journey?id=${journey.journeyID}">${journey.fromPlace}

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-public class JourneyController {
+public class JourneyController extends AbstractController {
     @Autowired
     private JourneyService journeyService;
     @Autowired
@@ -73,6 +73,7 @@ public class JourneyController {
                 ("busID").get(0)));
         Driver driver=(Driver) driverService.getElementByID(Integer.parseInt(
                 formData.get("driverID").get(0)));
+        //TODO NullPOINTER fix
         Passenger passenger = (Passenger) passengerService.getElementByID
                 (Integer.parseInt(formData.get("passengerID").get(0)));
         journey.setBus(bus);

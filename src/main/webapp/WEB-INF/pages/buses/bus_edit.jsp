@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -18,9 +19,11 @@
     <input class="form_class" name="registrationNumber" type="text"
             value="${bus.registrationNumber}">
     Регистрационный номер*<Br>
-    <input class="form_class" type="date" value="${bus.nextTI}">Дата
-    следующего ТО<Br>
-    <input class="form_class" type="date" value="${bus.lastTI}">Дата предыдущего ТО<Br>
+    <input class="form_class" name="nextTI" type="date"
+           value=${bus.nextTI}>Дата следующего ТО<Br>
+    <input class="form_class" name="lastTI" type="date"
+           value=${bus.lastTI}>Дата
+    предыдущего ТО<Br>
     <input class="form_class" type="submit" value="submit">
 </form>
 </body>

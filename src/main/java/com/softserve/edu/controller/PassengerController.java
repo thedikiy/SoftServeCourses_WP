@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-public class PassengerController {
+public class PassengerController extends AbstractController {
     @Autowired
     private PassengerService passengerService;
 

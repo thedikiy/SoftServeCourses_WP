@@ -5,7 +5,7 @@ import java.util.Set;
 @Entity
 public class Passenger implements IEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PASSENGER_ID")
     private int passengerID;
     @Column(name = "PASSENGER_NAME")
