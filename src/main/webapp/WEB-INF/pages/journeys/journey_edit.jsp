@@ -1,15 +1,9 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page isELIgnored="false" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@include file="../resources/head.jsp"%><html>
 <head>
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous">
     <title>Edit journey</title>
 </head>
 <body>
+<%@include file="../resources/nav.jsp"%>
 <button class="btn"><a href="/journey_list">Назад</a></button>
 <form action="/journey/edit" method="post">
     <input type="hidden" name="journeyID" value="${journey.journeyID}">
@@ -17,25 +11,23 @@
     отправления*<Br>
     <input name="destination" type="text" value="${journey.destination}">
     Место прибытия * <Br>
-    <select name="driverID" size=1 >
+    <input type="date" name="leavingDate"
+           value=${journey.leavingDate}>Время отправления<Br/>
+    <input type="date" name="arrivingDate"
+           value=${journey.arrivingDate}>Время прибытия<Br/>
+    <select name="driverID" size=1>
         <c:forEach items="${drivers}" var="driver">
-            <option name="driverID" value="${driver.driverID}">${driver.driverName}
+            <option name="driverID"
+                    value="${driver.driverID}">${driver.driverName}
                     ${driver.driverSurname}</option>
         </c:forEach>
     </select>Водитель<br/>
-    <select name="busID" size=1 >
+    <select name="busID" size=1>
         <c:forEach items="${buses}" var="bus">
             <option name="bus" value="${bus.busID}">${bus.busModel}</option>
         </c:forEach>
     </select>Автобус<br/>
-    <select name="passengerID" size=1 >
-        <c:forEach items="${passengers}" var="passenger">
-            <option name="passenger"
-                    value="${passenger.passengerID}">
-                    ${passenger.passengerName} ${passenger.passengerSurname}</option>
-        </c:forEach>
-    </select>Автобус<br/>
-    <input type="submit" value="submit">
+    <input type="submit" name="action" value="Submit">
 </form>
 </body>
 </html>

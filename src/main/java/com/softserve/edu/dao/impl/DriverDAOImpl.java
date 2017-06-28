@@ -1,11 +1,11 @@
-package com.softserve.edu.dao;
+package com.softserve.edu.dao.impl;
 
 import com.softserve.edu.entity.Driver;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class DriverDAO extends ElementDAOImpl<Driver>{
-    public DriverDAO() {
+public class DriverDAOImpl extends ElementDAOImpl<Driver>{
+    public DriverDAOImpl() {
         super(Driver.class);
     }
 }

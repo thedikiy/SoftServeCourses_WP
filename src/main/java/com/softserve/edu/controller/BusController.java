@@ -15,39 +15,44 @@ import java.util.List;
 
 @Controller
 public class BusController extends AbstractController {
-    @Autowired
+
     private BusService busService;
+
+    @Autowired
+    public void setBusService(BusService busService) {
+        this.busService = busService;
+    }
 
     @RequestMapping("/buslist")
     public String getAllBuses(Model model) {
-        List<Bus>buses = busService.getAllElements();
+        List<Bus> buses = busService.getAllElements();
         model.addAttribute("buses", buses);
         return "buses/bus_list";
     }
 
     @RequestMapping("/bus")
     public String showSelectedBusInfo(
-            @RequestParam("id")int busID, Model model) {
-        Bus currentBus = (Bus) busService.getElementByID(busID);
+            @RequestParam("id") int busID, Model model) {
+        Bus currentBus = busService.getElementByID(busID);
         model.addAttribute("bus", currentBus);
         return "/buses/bus";
     }
 
-    @RequestMapping(value = "/bus/edit",method = RequestMethod.GET)
+    @RequestMapping(value = "/bus/edit", method = RequestMethod.GET)
     public String showBus(
-            @RequestParam(value = "id",required = false) String busID, Model
+            @RequestParam(value = "id", required = false) String busID, Model
             model) {
         Bus bus = null;
         if (busID == null) {
             bus = new Bus();
         } else {
-            bus = (Bus) busService.getElementByID(Integer.parseInt(busID));
+            bus = busService.getElementByID(Integer.parseInt(busID));
         }
-        model.addAttribute("bus",bus);
+        model.addAttribute("bus", bus);
         return "/buses/bus_edit";
     }
 
-    @RequestMapping(value = "/bus/edit",method = RequestMethod.POST)
+    @RequestMapping(value = "/bus/edit", method = RequestMethod.POST)
     public String editOrCreateBus(
             @ModelAttribute Bus bus, Model model) {
         if (bus.getBusID() == 0) {
@@ -55,9 +60,17 @@ public class BusController extends AbstractController {
         } else {
             busService.updateElement(bus);
         }
-        bus =(Bus) busService.getElementByID(bus.getBusID());
-        model.addAttribute("bus",bus);
+        bus = busService.getElementByID(bus.getBusID());
+        model.addAttribute("bus", bus);
         return "/buses/bus";
+    }
+
+    @RequestMapping(value = "/bus/delete")
+    public String deleteDriver(
+            @RequestParam(value = "id") int busID) {
+        Bus bus = busService.getElementByID(busID);
+        busService.deleteElement(bus);
+        return "redirect:/buslist";
     }
 
 

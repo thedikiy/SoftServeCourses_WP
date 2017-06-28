@@ -1,15 +1,10 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page isELIgnored="false" %>
+<%@include file="../resources/head.jsp"%>
 <html>
 <head>
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous">
-    <title>journey</title>
+    <title>Passenger ${passenger.passengerID}</title>
 </head>
 <body>
+<%@include file="../resources/nav.jsp"%>
 <h1>Пассажир №${passenger.passengerID}</h1>
 <button class="btn"><a href="/passenger_list">Назад</a></button>
 <p>Имя: ${passenger.passengerName}</p>
@@ -22,5 +17,8 @@
 </c:forEach>
 <button class="btn">
     <a href="/passenger/edit?id=${passenger.passengerID}">Изменить...</a></button>
+<button class="btn">
+    <a href="/passenger/delete?id=${passenger.passengerID}">Удалить...</a></button>
+
 </body>
 </html>

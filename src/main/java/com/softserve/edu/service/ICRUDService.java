@@ -1,8 +1,8 @@
-package com.softserve.edu.dao;
+package com.softserve.edu.service;
 
 import java.util.List;
 
-public interface ElementDAO<E> {
+public interface ICRUDService<E> {
     void addElement(E element);
 
     void updateElement(E element);

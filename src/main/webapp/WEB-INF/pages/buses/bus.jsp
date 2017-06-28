@@ -1,16 +1,10 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page isELIgnored="false" %>
+<%@include file="../resources/head.jsp" %>
 <html>
 <head>
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous">
-    <title>BUS</title>
+    <title>BUS ${bus.busID}</title>
 </head>
 <body>
+<%@include file="../resources/nav.jsp"%>
 <h1 class="bus">Автобус №${bus.busID}</h1>
 <button class="btn"><a href="/buslist">Назад</a></button>
 <p>Модель: ${bus.busModel}</p>
@@ -20,8 +14,11 @@
 <p>Дата следующего ТО: <fmt:formatDate value="${bus.nextTI}" pattern="yyyy-MM-dd"/></p>
 <p>Рейсы:</p>
 <c:forEach items="${bus.journeys}" var="journey"><p><a
-        href="${journey.journeyID}">${journey.fromPlace}
+        href="/journey?id=${journey.journeyID}">${journey.fromPlace}
         ${journey.destination}</a></p></c:forEach>
 <button class="btn"><a href="/bus/edit?id=${bus.busID}">Изменить...</a></button>
+<button
+        class="btn"><a href="/bus/delete?id=${bus.busID}">Удалить
+</a></button>
 </body>
 </html>

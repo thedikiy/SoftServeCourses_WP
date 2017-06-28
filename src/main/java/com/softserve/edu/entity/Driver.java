@@ -5,7 +5,8 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-public class Driver implements IEntity {
+@Table(name = "DRIVER")
+public class Driver {
     @Id
     @GeneratedValue(
             strategy = GenerationType.IDENTITY)

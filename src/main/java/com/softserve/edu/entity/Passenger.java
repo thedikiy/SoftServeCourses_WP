@@ -3,7 +3,8 @@ package com.softserve.edu.entity;
 import javax.persistence.*;
 import java.util.Set;
 @Entity
-public class Passenger implements IEntity {
+@Table(name = "PASSENGER")
+public class Passenger {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PASSENGER_ID")

@@ -1,4 +1,4 @@
-package com.softserve.edu.dao;
+package com.softserve.edu.dao.impl;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -16,7 +16,7 @@ public class HibernateUtils {
         try {
             sessionFactory = new Configuration().configure().buildSessionFactory();
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 }

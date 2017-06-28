@@ -1,15 +1,10 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page isELIgnored="false" %>
+<%@include file="../resources/head.jsp"%>
 <html>
 <head>
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous">
     <title>Drivers</title>
 </head>
 <body>
+<%@include file="../resources/nav.jsp"%>
 <h1>Список водителей</h1>
 <button class="btn"><a href="/">Назад</a></button>
 <div class="row">

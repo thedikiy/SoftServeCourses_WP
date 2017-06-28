@@ -1,6 +1,7 @@
-package com.softserve.edu.dao;
+package com.softserve.edu.dao.impl;
 
 
+import com.softserve.edu.dao.ElementDAO;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

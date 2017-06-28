@@ -1,16 +1,11 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page isELIgnored="false" %>
+<%@include file="../resources/head.jsp" %>
 <html>
 <head>
     <title>Buses</title>
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous">
 </head>
 <body>
-<h1 align="center">Список Автобусов</h1>
+<%@include file="../resources/nav.jsp"%>
+<h1>Список Автобусов</h1>
 <button class="btn"><a href="/">Назад</a></button>
 <div class="row">
 <table>
@@ -18,15 +13,19 @@
     <tr>
         <th class="col-md-1">#</th>
         <th class="col-md-4">Модель</th>
+        <th class="col-md-4">Регистрационный номер</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach items="${buses}" var="bus" varStatus="count">
         <tr>
             <th class="col-md-1">${count.index + 1}</th>
+            <c:url value="/bus?id=${bus.busID}" var="busUrl"/>
             <td class="col-md-4">
-                <c:url value="/bus?id=${bus.busID}" var="busUrl"/>
                 <a href=${busUrl}>${bus.busModel}</a>
+            </td>
+            <td class="col-md-4">
+                <a href=${busUrl}>${bus.registrationNumber}</a>
             </td>
         </tr>
     </c:forEach>

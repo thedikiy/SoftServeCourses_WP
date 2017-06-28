@@ -16,8 +16,14 @@ import java.util.Set;
 
 @Controller
 public class DriverController extends AbstractController {
-    @Autowired
+
     DriverService driverService;
+
+    @Autowired
+    public void setDriverService(DriverService driverService) {
+        this.driverService = driverService;
+    }
+
     @RequestMapping("/driver_list")
     public String getAllDrivers(Model model) {
         List<Driver> drivers = driverService.getAllElements();
@@ -28,27 +34,27 @@ public class DriverController extends AbstractController {
     @RequestMapping("/driver")
     public String showSelectedDriverInfo(
             @RequestParam("id") String driverID, Model model) {
-        Driver currentDriver = (Driver) driverService.getElementByID(
+        Driver currentDriver = driverService.getElementByID(
                 Integer.parseInt(driverID));
         model.addAttribute("driver", currentDriver);
         return "/drivers/driver";
     }
 
-    @RequestMapping(value = "/driver/edit",method = RequestMethod.GET)
+    @RequestMapping(value = "/driver/edit", method = RequestMethod.GET)
     public String showDriver(
-            @RequestParam(value = "id",required = false) String driverID, Model
+            @RequestParam(value = "id", required = false) String driverID, Model
             model) {
         Driver driver = null;
         if (driverID == null) {
             driver = new Driver();
         } else {
-            driver = (Driver) driverService.getElementByID(Integer.parseInt(driverID));
+            driver = driverService.getElementByID(Integer.parseInt(driverID));
         }
-        model.addAttribute("driver",driver);
+        model.addAttribute("driver", driver);
         return "/drivers/driver_edit";
     }
 
-    @RequestMapping(value = "/driver/edit",method = RequestMethod.POST)
+    @RequestMapping(value = "/driver/edit", method = RequestMethod.POST)
     public String editOrCreateDriver(
             @ModelAttribute Driver driver, Model model) {
         if (driver.getDriverID() == 0) {
@@ -56,8 +62,16 @@ public class DriverController extends AbstractController {
         } else {
             driverService.updateElement(driver);
         }
-        driver =(Driver) driverService.getElementByID(driver.getDriverID());
-        model.addAttribute("driver",driver);
+        driver = driverService.getElementByID(driver.getDriverID());
+        model.addAttribute("driver", driver);
         return "/drivers/driver";
+    }
+
+    @RequestMapping(value = "/driver/delete")
+    public String deleteDriver(
+            @RequestParam(value = "id") int driverID) {
+        Driver driver = driverService.getElementByID(driverID);
+        driverService.deleteElement(driver);
+        return "redirect:/driver_list";
     }
 }

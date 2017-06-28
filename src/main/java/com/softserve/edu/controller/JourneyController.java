@@ -18,14 +18,30 @@ import java.util.List;
 
 @Controller
 public class JourneyController extends AbstractController {
-    @Autowired
     private JourneyService journeyService;
-    @Autowired
     private DriverService driverService;
-    @Autowired
     private BusService busService;
-    @Autowired
     private PassengerService passengerService;
+
+    @Autowired
+    public void setJourneyService(JourneyService journeyService) {
+        this.journeyService = journeyService;
+    }
+
+    @Autowired
+    public void setDriverService(DriverService driverService) {
+        this.driverService = driverService;
+    }
+
+    @Autowired
+    public void setBusService(BusService busService) {
+        this.busService = busService;
+    }
+
+    @Autowired
+    public void setPassengerService(PassengerService passengerService) {
+        this.passengerService = passengerService;
+    }
 
     @RequestMapping("/journey_list")
     public String getAllJourneys(Model model) {
@@ -43,9 +59,9 @@ public class JourneyController extends AbstractController {
         return "/journeys/journey";
     }
 
-    @RequestMapping(value = "/journey/edit",method = RequestMethod.GET)
+    @RequestMapping(value = "/journey/edit", method = RequestMethod.GET)
     public String showJourney(
-            @RequestParam(value = "id",required = false) String journeyID, Model
+            @RequestParam(value = "id", required = false) String journeyID, Model
             model) {
         Journey journey = null;
         if (journeyID == null) {
@@ -59,35 +75,36 @@ public class JourneyController extends AbstractController {
         List<Passenger> passengers = passengerService.getAllElements();
         model.addAttribute("drivers", drivers);
         model.addAttribute("buses", buses);
-        model.addAttribute("journey",journey);
+        model.addAttribute("journey", journey);
         model.addAttribute("passengers", passengers);
         return "/journeys/journey_edit";
     }
 
-    @RequestMapping(value = "/journey/edit",method = RequestMethod.POST)
-    public String editOrCreateJourney(
+    @RequestMapping(value = "/journey/edit", method = RequestMethod.POST)
+    public String editOrCreateJourney(@RequestParam("action") String action,
             @RequestBody MultiValueMap<String, String> formData,
             @ModelAttribute Journey journey, Model model) {
-
-        Bus bus =(Bus) busService.getElementByID(Integer.parseInt( formData.get
-                ("busID").get(0)));
-        Driver driver=(Driver) driverService.getElementByID(Integer.parseInt(
-                formData.get("driverID").get(0)));
-        //TODO NullPOINTER fix
-        Passenger passenger = (Passenger) passengerService.getElementByID
-                (Integer.parseInt(formData.get("passengerID").get(0)));
-        journey.setBus(bus);
-        journey.setDriver(driver);
-        journey.getPassengers().add(passenger);
-        if (journey.getJourneyID() == 0) {
-            journeyService.addElement(journey);
-        } else {
-            journeyService.updateElement(journey);
-        }
-        journey = journeyService.getElementByID(
-                journey.getJourneyID());
-        model.addAttribute("journey",journey);
-        return "/journeys/journey";
+            Bus bus = busService.getElementByID(Integer.parseInt(formData.get
+                    ("busID").get(0)));
+            Driver driver = driverService.getElementByID(Integer.parseInt(
+                    formData.get("driverID").get(0)));
+            journey.setBus(bus);
+            journey.setDriver(driver);
+            if (journey.getJourneyID() == 0) {
+                journeyService.addElement(journey);
+            } else {
+                journeyService.updateElement(journey);
+            }
+            journey = journeyService.getElementByID(
+                    journey.getJourneyID());
+            model.addAttribute("journey", journey);
+            return "/journeys/journey";
     }
 
+    @RequestMapping(value = "/journey/delete")
+    public String deleteJourney(@RequestParam(value = "id") int journeyId) {
+        Journey journey = journeyService.getElementByID(journeyId);
+        journeyService.deleteElement(journey);
+        return "redirect:/journey_list";
+    }
 }

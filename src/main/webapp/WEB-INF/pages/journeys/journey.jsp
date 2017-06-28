@@ -1,29 +1,31 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page isELIgnored="false" %>
+<%@include file="../resources/head.jsp"%>
 <html>
 <head>
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous">
-    <title>journey</title>
+    <title>Journey ${journey.journeyID}</title>
 </head>
 <body>
+<%@include file="../resources/nav.jsp"%>
 <h1>Рейс №${journey.journeyID}</h1>
 <button class="btn"><a href="/journey_list">Назад</a></button>
 <p>Место отправления: ${journey.fromPlace}</p>
 <p>Место прибытия: ${journey.destination}</p>
+<p>Время отправления: <fmt:formatDate value="${journey.leavingDate}"
+                                      pattern="yyyy-MM-dd"/></p>
+<p>Время прибытия:<fmt:formatDate value="${journey.arrivingDate}"
+                                  pattern="yyyy-MM-dd"/></p></p>
 <a href="/driver?id=${journey.driver.driverID}">Водитель: ${journey.driver.driverName}
     ${journey.driver.driverSurname}</a>
 <p><a href="/bus?id=${journey.bus.busID}">Автобус:
     ${journey.bus.busModel}</a></p>
 <p>Пассажиры:</p>
 <c:forEach items="${journey.passengers}" var="passanger">
-   <p><a href="/passenger?id=${passanger.passengerID}">${passanger.passengerName}
-           ${passanger.passengerSurname}</a></p>
+    <p>
+        <a href="/passenger?id=${passanger.passengerID}">${passanger.passengerName}
+                ${passanger.passengerSurname}</a></p>
 </c:forEach>
 <button class="btn">
     <a href="/journey/edit?id=${journey.journeyID}">Изменить...</a></button>
+<button class="btn">
+    <a href="/journey/delete?id=${journey.journeyID}">Удалить...</a></button>
 </body>
 </html>
