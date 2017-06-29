@@ -19,7 +19,7 @@ public class BusController extends AbstractController {
         this.busService = busService;
     }
 
-    @RequestMapping("/buslist")
+    @RequestMapping("/bus_list")
     public String getAllBuses(Model model) {
         List<Bus> buses = busService.getAllElements();
         model.addAttribute("buses", buses);
@@ -66,7 +66,7 @@ public class BusController extends AbstractController {
             @RequestParam(value = "id") int busID) {
         Bus bus = busService.getElementByID(busID);
         busService.deleteElement(bus);
-        return "redirect:/buslist";
+        return "redirect:/bus_list";
     }
 
 

@@ -4,7 +4,7 @@
 </div>
 <div class="row">
     <div class="col-md-3">
-        <h3 align="center"><a href="/buslist">Список автобусов</a></h3>
+        <h3 align="center"><a href="/bus_list">Список автобусов</a></h3>
     </div>
     <div class="col-md-3">
         <h3 align="center"><a href="/driver_list">Список водителей</a></h3>

@@ -13,9 +13,9 @@
                                           pattern="yyyy-MM-dd"/></p>
     <p>Время прибытия:<fmt:formatDate value="${journey.arrivingDate}"
                                       pattern="yyyy-MM-dd"/></p></p>
-    <a href="/driver?id=${journey.driver.driverID}">Водитель: ${journey.driver.driverName}
+    Водитель: <a href="/driver?id=${journey.driver.driverID}">${journey.driver.driverName}
         ${journey.driver.driverSurname}</a>
-    <p><a href="/bus?id=${journey.bus.busID}">Автобус:
+    <p>Автобус: <a href="/bus?id=${journey.bus.busID}">
         ${journey.bus.busModel}</a></p>
     <p>Пассажиры:</p>
     <c:forEach items="${journey.passengers}" var="passanger">

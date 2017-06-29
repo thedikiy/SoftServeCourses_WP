@@ -48,8 +48,7 @@ public class ElementDAOImpl<E> implements ElementDAO<E> {
         E element = null;
         try {
             session = HibernateUtils.getSessionFactory().openSession();
-            element =
-                    session.get(elementClass, elementID);
+            element = session.get(elementClass, elementID);
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();

@@ -23,6 +23,30 @@ public class Journey {
     @Column(name = "DESTINATION")
     private String destination;
 
+    @ManyToOne
+    @JoinColumn(name = "BUS_ID")
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    private Bus bus;
+
+    @ManyToOne()
+    @JoinColumn(name = "DRIVER_ID")
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    private Driver driver;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "JOURNEYS_PASSENGERS",joinColumns = @JoinColumn(name =
+            "PASSENGER_ID"),inverseJoinColumns = @JoinColumn(
+            name = "JOURNEY_ID"))
+    private Set<Passenger> passengers = new HashSet<Passenger>();
+
+    public Set<Passenger> getPassengers() {
+        return passengers;
+    }
+
+    public void setPassengers(Set<Passenger> passengers) {
+        this.passengers = passengers;
+    }
+
     public String getFromPlace() {
         return fromPlace;
     }
@@ -37,30 +61,6 @@ public class Journey {
 
     public void setDestination(String destination) {
         this.destination = destination;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "BUS_ID")
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
-    private Bus bus;
-
-    @ManyToOne()
-    @JoinColumn(name = "DRIVER_ID")
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
-    private Driver driver;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "JOURNEYS_PASSENGERS",joinColumns = @JoinColumn(name =
-            "PASSENGER_ID"),inverseJoinColumns = @JoinColumn(
-                    name = "JOURNEY_ID"))
-    private Set<Passenger> passengers = new HashSet<Passenger>();
-
-    public Set<Passenger> getPassengers() {
-        return passengers;
-    }
-
-    public void setPassengers(Set<Passenger> passengers) {
-        this.passengers = passengers;
     }
 
     public int getJourneyID() {
