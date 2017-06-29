@@ -1,12 +1,11 @@
-<%@include file="../resources/head.jsp" %>
+<%@include file="/resources/head.jsp" %>
 <html>
 <head>
     <title>BUS ${bus.busID}</title>
 </head>
 <body>
-<%@include file="../resources/nav.jsp"%>
-<h1 class="bus">Автобус №${bus.busID}</h1>
-<button class="btn"><a href="/buslist">Назад</a></button>
+<%@include file="/resources/nav.jsp"%>
+<div class="content"><h1 class="bus">Автобус №${bus.busID}</h1>
 <p>Модель: ${bus.busModel}</p>
 <p>Регистрационный номер: ${bus.registrationNumber}</p>
 <p>Дата последнего ТО:
@@ -19,6 +18,6 @@
 <button class="btn"><a href="/bus/edit?id=${bus.busID}">Изменить...</a></button>
 <button
         class="btn"><a href="/bus/delete?id=${bus.busID}">Удалить
-</a></button>
+</a></button></div>
 </body>
 </html>

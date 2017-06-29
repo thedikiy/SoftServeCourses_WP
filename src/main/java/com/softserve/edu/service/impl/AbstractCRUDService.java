@@ -1,6 +1,7 @@
-package com.softserve.edu.service;
+package com.softserve.edu.service.impl;
 
 import com.softserve.edu.dao.ElementDAO;
+import com.softserve.edu.service.ICRUDService;
 
 import java.util.List;
 

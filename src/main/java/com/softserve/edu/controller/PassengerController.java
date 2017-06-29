@@ -1,7 +1,7 @@
 package com.softserve.edu.controller;
 
 import com.softserve.edu.entity.Passenger;
-import com.softserve.edu.service.PassengerService;
+import com.softserve.edu.service.impl.PassengerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

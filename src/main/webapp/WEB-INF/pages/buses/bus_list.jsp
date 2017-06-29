@@ -1,12 +1,11 @@
-<%@include file="../resources/head.jsp" %>
+<%@include file="/resources/head.jsp" %>
 <html>
 <head>
     <title>Buses</title>
 </head>
 <body>
-<%@include file="../resources/nav.jsp"%>
-<h1>Список Автобусов</h1>
-<button class="btn"><a href="/">Назад</a></button>
+<%@include file="/resources/nav.jsp"%>
+<div class="content"><h1>Список Автобусов</h1>
 <div class="row">
 <table>
     <thead>
@@ -33,5 +32,5 @@
 </table>
 </div>
 <button class="btn"><a href="/bus/edit">Добавить...</a></button>
-</body>
+</div></body>
 </html>
