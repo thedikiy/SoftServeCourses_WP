@@ -24,5 +24,6 @@
         <mapping class="com.softserve.edu.entity.Journey"/>
         <mapping class="com.softserve.edu.entity.Driver"/>
         <mapping class="com.softserve.edu.entity.Passenger"/>
+        <mapping class="com.softserve.edu.entity.User"/>
     </session-factory>
 </hibernate-configuration>

@@ -12,4 +12,6 @@ public interface ElementDAO<E> {
     List<E> getAllElements();
 
     void deleteElement(E element);
+
+    E findUserByName(String table, String column, String name);
 }
