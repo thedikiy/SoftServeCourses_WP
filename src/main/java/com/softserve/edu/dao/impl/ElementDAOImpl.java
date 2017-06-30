@@ -43,6 +43,25 @@ public class ElementDAOImpl<E> implements ElementDAO<E> {
         }
     }
 
+    public E findUserByName(String table, String column, String name) {
+        Session session = null;
+        E element = null;
+        try {
+            session = HibernateUtils.getSessionFactory().openSession();
+            String hql = "from "+table+" where "+column + " = :string";
+            org.hibernate.query.Query query=session.createQuery(hql,elementClass)
+                    .setParameter("string",name);
+            element= (E) query.getSingleResult();
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+
+        }
+        return element;
+
+    }
+
     public E getElementByID(int elementID) {
         Session session = null;
         E element = null;
