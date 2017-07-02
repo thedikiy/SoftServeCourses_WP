@@ -1,25 +1,25 @@
-<%@include file="/resources/head.jsp"%>
+<%@include file="/resources/static/head.jsp"%>
 <html>
 <head>
     <title></title>
 </head>
 <body>
-<%@include file="/resources/nav.jsp"%>
-<h1>Login</h1>
-<form action="/login" method='POST'>
+<%@include file="/resources/static/nav.jsp"%>
+<div class="content"><form action="/login" method='POST'>
+<h1>Вход в систему</h1>
     <table>
         <tr>
-            <td>User:</td>
+            <td>Имя пользователя: </td>
             <td><input type='text' name='username' value=''></td>
         </tr>
         <tr>
-            <td>Password:</td>
+            <td>Пароль:</td>
             <td><input type='password' name='password' /></td>
         </tr>
         <tr>
-            <td><input name="submit" type="submit" value="submit" /></td>
+            <td><input class="submit_button" name="submit" type="submit" value="submit" /></td>
         </tr>
     </table>
 </form>
-</body>
+</div></body>
 </html>

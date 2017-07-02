@@ -1,10 +1,10 @@
-<%@include file="/resources/head.jsp" %>
+<%@include file="/resources/static/head.jsp" %>
 <html>
 <head>
     <title>Driver ${driver.driverID}</title>
 </head>
 <body>
-<%@include file="/resources/nav.jsp" %>
+<%@include file="/resources/static/nav.jsp" %>
 <div class="content"><h1>Водитель ${driver.driverID}</h1>
     <p>Имя: ${driver.driverName}</p>
     <p>Фамилия: ${driver.driverSurname}</p>
@@ -17,12 +17,12 @@
             href="/journey?id=${journey.journeyID}">${journey.fromPlace}
             ${journey.destination}</a></p></c:forEach>
 
-    <button class="btn"><a
+    <sec:authorize access="hasAnyAuthority('ADMIN','MANAGER')"><button class="btn"><a
             href="/driver/edit?id=${driver.driverID}">Изменить...</a>
     </button>
     <button
             class="btn"><a href="/driver/delete?id=${driver.driverID}">Удалить
-    </a></button>
+    </a></button></sec:authorize>
 </div>
 </body>
 </html>

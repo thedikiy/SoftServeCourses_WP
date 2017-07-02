@@ -1,10 +1,10 @@
-<%@include file="/resources/head.jsp"%>
+<%@include file="/resources/static/head.jsp"%>
 <html>
 <head>
     <title>Passenger ${passenger.passengerID}</title>
 </head>
 <body>
-<%@include file="/resources/nav.jsp"%>
+<%@include file="/resources/static/nav.jsp"%>
 <div class="content">
 <h1>Пассажир №${passenger.passengerID}</h1>
 <p>Имя: ${passenger.passengerName}</p>

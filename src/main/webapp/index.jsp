@@ -1,9 +1,9 @@
-<%@include file="/resources/head.jsp" %>
+<%@include file="/resources/static/head.jsp" %>
 <html>
 <head>
     <title>Bus Manager</title>
 </head>
 <body>
-<%@ include file="/resources/nav.jsp" %>
+<%@ include file="/resources/static/nav.jsp" %>
 </body>
 </html>

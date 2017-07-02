@@ -1,14 +1,15 @@
-<%@include file="/resources/head.jsp" %>
+<%@include file="/resources/static/head.jsp" %>
 <html>
 <head>
     <title>Journeys</title>
 </head>
 <body>
-<%@include file="/resources/nav.jsp" %>
+<%@include file="/resources/static/nav.jsp" %>
 <div class="content">
     <h1>Список рейсов</h1>
+    <div class="col-md-6">
     <div class="row">
-        <table>
+        <table class="table table-striped">
             <thead>
             <tr>
                 <th class="col-md-1">#</th>
@@ -35,7 +36,8 @@
             </tbody>
         </table>
     </div>
-    <button class="btn"><a href="/journey/edit">Добавить...</a></button>
-</div>
+    <sec:authorize access="hasAnyAuthority('ADMIN','MANAGER')">
+        <button class="btn"><a href="/journey/edit">Добавить...</a></button></sec:authorize>
+</div></div>
 </body>
 </html>
