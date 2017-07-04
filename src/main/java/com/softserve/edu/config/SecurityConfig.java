@@ -14,8 +14,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
+
     private UserDetailsService userDetailsService;
+
+    @Autowired
+    public SecurityConfig(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception {
@@ -25,10 +30,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/bus*", "/driver*", "/journey/*")
+                .antMatchers("/bus/**", "/driver/**","/journey/edit*",
+                        "/journey/delete")
                 .hasAnyAuthority("ADMIN", "MANAGER")
-                .antMatchers("/passenger*")
+                .antMatchers("/passenger/**")
                 .hasAnyAuthority("ADMIN", "MANAGER", "PASSENGER")
+                .antMatchers("/login*").anonymous()
+                .and().exceptionHandling().accessDeniedPage("/403")
                 .and().formLogin()
                 .loginPage("/login").defaultSuccessUrl("/", true)
                 .failureUrl("/login?error=true").and()

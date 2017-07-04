@@ -29,7 +29,7 @@ public class JourneyController extends AbstractController {
     private PassengerService passengerService;
     private ModelMapper mapper;
 
-    @RequestMapping("/journey_list")
+    @RequestMapping("/journey/list")
     public String getAllJourneys(Model model) {
         List<Journey> journeys = journeyService.getAllElements();
         model.addAttribute(journeys);
@@ -50,7 +50,7 @@ public class JourneyController extends AbstractController {
             @RequestParam(value = "id", required = false) String journeyID, Model
             model) {
         Journey journey = null;
-        if (journeyID == null) {
+        if (journeyID == null||journeyID.equals("0")) {
             journey = new Journey();
         } else {
             journey = journeyService.getElementByID(Integer
@@ -88,7 +88,7 @@ public class JourneyController extends AbstractController {
     public String deleteJourney(@RequestParam(value = "id") int journeyId) {
         Journey journey = journeyService.getElementByID(journeyId);
         journeyService.deleteElement(journey);
-        return "redirect:/journey_list";
+        return "redirect:/journey/list";
     }
 
     private JourneyDTO convertToDto(Journey journey) {

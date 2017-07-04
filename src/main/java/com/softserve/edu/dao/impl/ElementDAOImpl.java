@@ -32,14 +32,14 @@ public class ElementDAOImpl<E> implements ElementDAO<E> {
         sessionFactory.getCurrentSession().update(element);
     }
 
-    public E findUserByName(String table, String column, String name) {
-        E element = null;
+    public List<E> findByName(String table, String column, String name) {
+        List<E> eList;
         Session session = sessionFactory.getCurrentSession();
         String hql = "from " + table + " where " + column + " = :string";
         org.hibernate.query.Query query = session.createQuery(hql, elementClass)
                 .setParameter("string", name);
-        element = (E) query.getSingleResult();
-        return element;
+        eList = query.getResultList();
+        return eList;
     }
 
     public E getElementByID(int elementID) {

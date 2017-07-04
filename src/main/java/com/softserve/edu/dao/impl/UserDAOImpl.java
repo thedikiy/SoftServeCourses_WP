@@ -12,7 +12,7 @@ public class UserDAOImpl extends ElementDAOImpl<User> implements UserDAO {
     }
 
     public User findUserByUsername(String username) {
-        return super.findUserByName(
-                User.class.getSimpleName(), "username", username);
+        User user = null;
+        return null;
     }
 }

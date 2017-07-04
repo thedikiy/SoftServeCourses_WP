@@ -10,7 +10,7 @@ public class Passenger {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PASSENGER_ID")
-    private Integer passengerID;
+    private int passengerID;
     @Size(min = 1, max = 30, message = "{validation.error.name.is.empty}")
     @Column(name = "PASSENGER_NAME")
     private String passengerName;

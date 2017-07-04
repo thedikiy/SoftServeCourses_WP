@@ -15,21 +15,23 @@
     <div class="row">
         <sec:authorize access="hasAnyAuthority('ADMIN','MANAGER')">
             <div class="col-md-3">
-                <h3 align="center"><a class="nav_link" href="/bus_list">Список
+                <h3 align="center"><a class="nav_link" href="/bus/list">Список
                     автобусов</a></h3>
             </div>
             <div class="col-md-3">
-                <h3 align="center"><a class="nav_link" href="/driver_list">Список
+                <h3 align="center"><a class="nav_link"
+                href="/driver/list">Список
                     водителей</a></h3>
             </div>
         </sec:authorize>
         <div class="col-md-3">
-            <h3 align="center"><a class="nav_link" href="/journey_list">Список
+            <h3 align="center"><a class="nav_link" href="/journey/list">Список
                 рейсов</a></h3>
         </div>
         <sec:authorize access="isAuthenticated()">
             <div class="col-md-3">
-                <h3 align="center"><a class="nav_link" href="/passenger_list">Список
+                <h3 align="center"><a class="nav_link"
+                href="/passenger/list">Список
                     пассажиров</a></h3>
             </div>
         </sec:authorize>

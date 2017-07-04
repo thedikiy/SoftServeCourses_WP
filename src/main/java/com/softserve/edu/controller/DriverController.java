@@ -25,7 +25,7 @@ public class DriverController extends AbstractController {
         this.driverService = driverService;
     }
 
-    @RequestMapping("/driver_list")
+    @RequestMapping("/driver/list")
     public String getAllDrivers(Model model) {
         List<Driver> drivers = driverService.getAllElements();
         model.addAttribute(drivers);
@@ -46,7 +46,7 @@ public class DriverController extends AbstractController {
             @RequestParam(value = "id", required = false) String driverID, Model
             model) {
         Driver driver = null;
-        if (driverID == null) {
+        if (driverID == null||driverID.equals("0")) {
             driver = new Driver();
         } else {
             driver = driverService.getElementByID(Integer.parseInt(driverID));
@@ -78,6 +78,6 @@ public class DriverController extends AbstractController {
             @RequestParam(value = "id") int driverID) {
         Driver driver = driverService.getElementByID(driverID);
         driverService.deleteElement(driver);
-        return "redirect:/driver_list";
+        return "redirect:/driver/list";
     }
 }

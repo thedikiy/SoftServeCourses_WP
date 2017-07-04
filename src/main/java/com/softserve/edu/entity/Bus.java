@@ -16,6 +16,7 @@ public class Bus {
     @Size(min = 1, max = 100, message = "{validation.error.surname.is.empty}")
     private String busModel;
     @Column(name = "REGISTRATION_NUMBER")
+    @Size(min = 1, max = 10, message = "{validation.error.bus.reg.number.is.empty}")
     private String registrationNumber;
     @Column(name = "LAST_TI")
     @Temporal(TemporalType.DATE)

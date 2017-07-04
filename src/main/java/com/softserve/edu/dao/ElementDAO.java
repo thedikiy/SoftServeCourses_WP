@@ -13,5 +13,5 @@ public interface ElementDAO<E> {
 
     void deleteElement(E element);
 
-    E findUserByName(String table, String column, String name);
+    List<E> findByName(String table, String column, String name);
 }

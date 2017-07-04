@@ -25,7 +25,7 @@ public class PassengerController extends AbstractController {
         this.passengerService = passengerService;
     }
 
-    @RequestMapping("/passenger_list")
+    @RequestMapping("/passenger/list")
     public String getAllPassengers(Model model) {
         List<Passenger> passengers = passengerService.getAllElements();
         model.addAttribute("passengers", passengers);
@@ -46,7 +46,7 @@ public class PassengerController extends AbstractController {
             @RequestParam(value = "id", required = false) String passengerID,
             Model model) {
         Passenger passenger = null;
-        if (passengerID == null) {
+        if (passengerID == null||passengerID.equals("0")) {
             passenger = new Passenger();
         } else {
             passenger = passengerService.getElementByID(
@@ -70,15 +70,15 @@ public class PassengerController extends AbstractController {
             model.addAttribute("passenger", passenger);
             return "/passengers/passenger";
         } else {
-            model.addAttribute("errors", errors.getFieldError());
+            model.addAttribute("errors", errors.getFieldErrors());
             return showPassengerEditForm(String.valueOf(passenger.getPassengerID()), model);
         }
     }
 
     @RequestMapping("/passenger/delete")
-    public String delePassenger(@RequestParam(value = "id") int passengerId) {
+    public String deletePassenger(@RequestParam(value = "id") int passengerId) {
         Passenger passenger = passengerService.getElementByID(passengerId);
         passengerService.deleteElement(passenger);
-        return "redirect:/passenger_list";
+        return "redirect:/passenger/list";
     }
 }
