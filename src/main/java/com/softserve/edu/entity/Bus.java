@@ -1,6 +1,7 @@
 package com.softserve.edu.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Set;
 
@@ -12,6 +13,7 @@ public class Bus {
     @Column(name = "BUS_ID")
     private int busID;
     @Column(name = "BUS_MODEL")
+    @Size(min = 1, max = 100, message = "{validation.error.surname.is.empty}")
     private String busModel;
     @Column(name = "REGISTRATION_NUMBER")
     private String registrationNumber;
@@ -24,13 +26,6 @@ public class Bus {
     @OneToMany(mappedBy = "bus", fetch = FetchType.EAGER)
     private Set<Journey> journeys;
 
-    public Set<Journey> getJourneys() {
-        return journeys;
-    }
-
-    public void setJourneys(Set<Journey> journeys) {
-        this.journeys = journeys;
-    }
 
     public int getBusID() {
         return busID;
@@ -38,6 +33,14 @@ public class Bus {
 
     public void setBusID(int busID) {
         this.busID = busID;
+    }
+
+    public Set<Journey> getJourneys() {
+        return journeys;
+    }
+
+    public void setJourneys(Set<Journey> journeys) {
+        this.journeys = journeys;
     }
 
     public String getBusModel() {

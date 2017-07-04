@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@include file="/resources/static/head.jsp" %>
 <html>
 <head>
@@ -21,20 +22,20 @@
             <input id="arrivingDate" class="form-control" type="date" name="arrivingDate" value=${journey.arrivingDate}><Br/>
             <label for="driver">Водитель</label>
             <select id="driver" class="form-control" name="driverID" size=1>
+                <option name="driverID" value="-1">Выберите Водителя</option>
                 <c:forEach items="${drivers}" var="driver">
-                    <option name="driverID"
-                            value="${driver.driverID}">${driver.driverName}
+                    <option value="${driver.driverID}">${driver.driverName}
                             ${driver.driverSurname}</option>
                 </c:forEach>
             </select><br/>
             <label for="bus">Автобус</label>
             <select id="bus" class="form-control" name="busID" size=1>
+                <option value="-1">Выберите автобус</option>
                 <c:forEach items="${buses}" var="bus">
-                    <option name="bus"
-                            value="${bus.busID}">${bus.busModel}</option>
+                    <option value="${bus.busID}">${bus.busModel}</option
                 </c:forEach>
             </select><br/>
-            <input class="submit_button" type="submit" name="action" value="Сохранить">
+            <input class="button submit_button" type="submit" name="action" value="Сохранить">
         </form>
     </div>
 </div>

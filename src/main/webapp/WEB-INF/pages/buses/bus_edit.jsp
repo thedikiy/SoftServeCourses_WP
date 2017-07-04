@@ -23,7 +23,8 @@
             <label for="lastTI">Дата предыдущего ТО</label>
             <input id="lastTI" class="form-control" name="lastTI" type="date"
                    value=${bus.lastTI}><Br>
-            <input class="submit_button" type="submit" value="Сохранить">
+            <%@include file="/resources/static/check_errors.jsp"%>
+            <input class="button submit_button" type="submit" value="Сохранить">
         </form>
     </div>
 </div>

@@ -1,9 +1,10 @@
 package com.softserve.edu.service.impl;
 
-import com.softserve.edu.UserDTO;
-import com.softserve.edu.dao.impl.UserDAOImpl;
+import com.softserve.edu.controller.dto.UserDTO;
+import com.softserve.edu.dao.UserDAO;
 import com.softserve.edu.entity.User;
 import com.softserve.edu.entity.enums.Role;
+import com.softserve.edu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.NoResultException;
 import java.util.Collection;
@@ -19,16 +21,17 @@ import java.util.Set;
 
 @Service
 public class UserDetailsServiceImpl extends AbstractCRUDService<User> implements
-        UserDetailsService {
+        UserDetailsService, UserService {
 
-    private UserDAOImpl userDAO;
+    private UserDAO userDAO;
 
     @Autowired
-    public UserDetailsServiceImpl(UserDAOImpl userDAO) {
+    public UserDetailsServiceImpl(UserDAO userDAO) {
         super(userDAO);
         this.userDAO = userDAO;
     }
 
+    @Transactional
     public User createNewAccount(UserDTO userDTO) {
         User newUser = null;
         if (!isUserExists(userDTO)) {
@@ -53,8 +56,9 @@ public class UserDetailsServiceImpl extends AbstractCRUDService<User> implements
         return true;
     }
 
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userDAO.findUserByName("User", "username", username);
+        User user = userDAO.findUserByUsername(username);
         return new UserDetailsImpl(user);
     }
 

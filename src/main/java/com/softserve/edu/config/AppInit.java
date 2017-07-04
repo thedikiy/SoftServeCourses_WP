@@ -11,7 +11,6 @@ import java.util.Date;
 public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 
-
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[]{

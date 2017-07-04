@@ -1,12 +1,10 @@
 package com.softserve.edu.entity;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 @Entity
 @Table(name = "JOURNEY")
 public class Journey {
@@ -25,17 +23,15 @@ public class Journey {
 
     @ManyToOne
     @JoinColumn(name = "BUS_ID")
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Bus bus;
 
     @ManyToOne()
     @JoinColumn(name = "DRIVER_ID")
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Driver driver;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "JOURNEYS_PASSENGERS",joinColumns = @JoinColumn(name =
-            "PASSENGER_ID"),inverseJoinColumns = @JoinColumn(
+    @JoinTable(name = "JOURNEYS_PASSENGERS", joinColumns = @JoinColumn(name =
+            "PASSENGER_ID"), inverseJoinColumns = @JoinColumn(
             name = "JOURNEY_ID"))
     private Set<Passenger> passengers = new HashSet<Passenger>();
 

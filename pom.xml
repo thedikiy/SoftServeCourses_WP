@@ -37,6 +37,11 @@
             <version>5.2.10.Final</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.18.2-GA</version>
+        </dependency>
 
 
         <!-- spring-context which provides core functionality -->
@@ -46,13 +51,19 @@
             <version>4.3.1.RELEASE</version>
         </dependency>
 
-
         <!-- The spring-webmvc module (also known as the Web-Servlet module) contains
             Spring’s model-view-controller (MVC) and REST Web Services implementation
             for web applications -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
+            <version>4.3.1.RELEASE</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
             <version>4.3.1.RELEASE</version>
         </dependency>
 
@@ -123,6 +134,18 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>5.2.5.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>0.7.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-dbcp</artifactId>
+            <version>7.0.55</version>
         </dependency>
 
     </dependencies>

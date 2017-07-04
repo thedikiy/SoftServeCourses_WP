@@ -1,6 +1,9 @@
 package com.softserve.edu.entity;
 
+import com.softserve.edu.validator.ValidPhone;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Set;
 
@@ -13,10 +16,13 @@ public class Driver {
     @Column(name = "DRIVER_ID")
     private int driverID;
     @Column(name = "DRIVER_NAME")
+    @Size(min = 1, max = 30, message = "{validation.error.name.is.empty}")
     private String driverName;
     @Column(name = "DRIVER_SURNAME")
+    @Size(min = 1, max = 30, message = "{validation.error.surname.is.empty}")
     private String driverSurname;
     @Column(name = "PHONE_NUMBER")
+    @ValidPhone(message = "{phone.validation.error.invalid.phone}")
     private String phoneNumber;
     @Column(name = "LICENCE_EXPIRE")
     @Temporal(TemporalType.DATE)

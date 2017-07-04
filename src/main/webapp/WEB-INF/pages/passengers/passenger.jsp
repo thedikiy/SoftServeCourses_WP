@@ -15,10 +15,8 @@
             ${journey.destination}</a>
     </p>
 </c:forEach>
-<button class="btn">
-    <a href="/passenger/edit?id=${passenger.passengerID}">Изменить...</a></button>
-<button class="btn">
-    <a href="/passenger/delete?id=${passenger.passengerID}">Удалить...</a></button>
+    <a class="button submit_button" href="/passenger/edit?id=${passenger.passengerID}">Изменить...</a>
+    <a class="button delete_button" href="/passenger/delete?id=${passenger.passengerID}">Удалить...</a>
 </div>
 </body>
 </html>

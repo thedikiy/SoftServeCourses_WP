@@ -1,4 +1,4 @@
-package com.softserve.edu;
+package com.softserve.edu.controller.dto;
 
 
 import com.softserve.edu.entity.enums.Role;
@@ -7,7 +7,7 @@ import com.softserve.edu.validator.PasswordMatches;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@PasswordMatches
+@PasswordMatches(message = "{password.validation.error.not.matching}")
 public class UserDTO {
 
     @NotNull
@@ -26,7 +26,7 @@ public class UserDTO {
     }
 
     public void setRole(Role role) {
-            this.role = role;
+        this.role = role;
     }
 
     public String getUsername() {

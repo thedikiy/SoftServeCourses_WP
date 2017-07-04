@@ -1,24 +1,27 @@
 package com.softserve.edu.controller;
 
 import com.softserve.edu.entity.Driver;
-import com.softserve.edu.service.impl.DriverService;
+import com.softserve.edu.service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 public class DriverController extends AbstractController {
 
-    DriverService driverService;
+    private DriverService driverService;
 
     @Autowired
-    public void setDriverService(DriverService driverService) {
+    public DriverController(DriverService driverService) {
         this.driverService = driverService;
     }
 
@@ -39,7 +42,7 @@ public class DriverController extends AbstractController {
     }
 
     @RequestMapping(value = "/driver/edit", method = RequestMethod.GET)
-    public String showDriver(
+    public String showDriverEditForm(
             @RequestParam(value = "id", required = false) String driverID, Model
             model) {
         Driver driver = null;
@@ -53,16 +56,21 @@ public class DriverController extends AbstractController {
     }
 
     @RequestMapping(value = "/driver/edit", method = RequestMethod.POST)
-    public String editOrCreateDriver(
-            @ModelAttribute Driver driver, Model model) {
-        if (driver.getDriverID() == 0) {
-            driverService.addElement(driver);
+    public String editOrCreateDriver(@ModelAttribute @Valid Driver driver,
+                                     BindingResult result, Errors errors, Model model) {
+        if (!result.hasErrors()) {
+            if (driver.getDriverID() == 0) {
+                driverService.addElement(driver);
+            } else {
+                driverService.updateElement(driver);
+            }
+            driver = driverService.getElementByID(driver.getDriverID());
+            model.addAttribute("driver", driver);
+            return "/drivers/driver";
         } else {
-            driverService.updateElement(driver);
+            model.addAttribute("errors", errors.getFieldErrors());
+            return showDriverEditForm(String.valueOf(driver.getDriverID()), model);
         }
-        driver = driverService.getElementByID(driver.getDriverID());
-        model.addAttribute("driver", driver);
-        return "/drivers/driver";
     }
 
     @RequestMapping(value = "/driver/delete")

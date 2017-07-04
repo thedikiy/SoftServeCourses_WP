@@ -24,12 +24,8 @@
             <label for="matchPassword">Повторите пароль</label>
             <input id="matchPassword" class="form-control" type="Password"
                    name="matchingPassword"/><br/>
-            <c:if test="${not empty errors}">
-                <c:forEach items="${errors}" var="error">
-                    <p class="error">${error.defaultMessage}</p>
-                </c:forEach>
-            </c:if>
-            <input class="submit_button" type="submit" value="Подтвердить"/>
+            <%@include file="/resources/static/check_errors.jsp"%>
+            <input class="button submit_button" type="submit" value="Подтвердить"/>
         </form>
     </div>
 </div>

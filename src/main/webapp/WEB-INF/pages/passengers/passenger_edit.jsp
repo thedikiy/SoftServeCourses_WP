@@ -15,7 +15,8 @@
         <input name="passengerSurname" type="text"
                value="${passenger.passengerSurname}">
         Фамилия* <Br>
-        <input type="submit" value="submit">
+        <%@include file="/resources/static/check_errors.jsp"%>
+        <input class="button submit_button" type="submit" value="submit">
     </form>
 </div>
 </body>

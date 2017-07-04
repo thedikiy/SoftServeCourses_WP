@@ -1,15 +1,18 @@
 package com.softserve.edu.controller;
 
 import com.softserve.edu.entity.Passenger;
-import com.softserve.edu.service.impl.PassengerService;
+import com.softserve.edu.service.PassengerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -18,7 +21,7 @@ public class PassengerController extends AbstractController {
     private PassengerService passengerService;
 
     @Autowired
-    public void setPassengerService(PassengerService passengerService) {
+    public PassengerController(PassengerService passengerService) {
         this.passengerService = passengerService;
     }
 
@@ -39,7 +42,7 @@ public class PassengerController extends AbstractController {
     }
 
     @RequestMapping(value = "/passenger/edit", method = RequestMethod.GET)
-    public String showPassenger(
+    public String showPassengerEditForm(
             @RequestParam(value = "id", required = false) String passengerID,
             Model model) {
         Passenger passenger = null;
@@ -54,17 +57,22 @@ public class PassengerController extends AbstractController {
     }
 
     @RequestMapping(value = "/passenger/edit", method = RequestMethod.POST)
-    public String editOrCreatePassenger(
-            @ModelAttribute Passenger passenger, Model model) {
-        if (passenger.getPassengerID() == 0) {
-            passengerService.addElement(passenger);
+    public String editOrCreatePassenger(@ModelAttribute @Valid Passenger passenger,
+                                        BindingResult result, Errors errors, Model model) {
+        if (!result.hasErrors()) {
+            if (passenger.getPassengerID() == 0) {
+                passengerService.addElement(passenger);
+            } else {
+                passengerService.updateElement(passenger);
+            }
+            passenger = passengerService.getElementByID(
+                    passenger.getPassengerID());
+            model.addAttribute("passenger", passenger);
+            return "/passengers/passenger";
         } else {
-            passengerService.updateElement(passenger);
+            model.addAttribute("errors", errors.getFieldError());
+            return showPassengerEditForm(String.valueOf(passenger.getPassengerID()), model);
         }
-        passenger = passengerService.getElementByID(
-                passenger.getPassengerID());
-        model.addAttribute("passenger", passenger);
-        return "/passengers/passenger";
     }
 
     @RequestMapping("/passenger/delete")

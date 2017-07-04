@@ -17,12 +17,10 @@
             href="/journey?id=${journey.journeyID}">${journey.fromPlace}
             ${journey.destination}</a></p></c:forEach>
 
-    <sec:authorize access="hasAnyAuthority('ADMIN','MANAGER')"><button class="btn"><a
-            href="/driver/edit?id=${driver.driverID}">Изменить...</a>
-    </button>
-    <button
-            class="btn"><a href="/driver/delete?id=${driver.driverID}">Удалить
-    </a></button></sec:authorize>
+    <sec:authorize access="hasAnyAuthority('ADMIN','MANAGER')">
+        <a class="button submit_button" href="/driver/edit?id=${driver.driverID}">Изменить...</a>
+        <a class="button delete_button" href="/driver/delete?id=${driver.driverID}">Удалить</a>
+    </sec:authorize>
 </div>
 </body>
 </html>

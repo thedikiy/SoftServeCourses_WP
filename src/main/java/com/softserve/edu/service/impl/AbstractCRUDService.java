@@ -2,9 +2,12 @@ package com.softserve.edu.service.impl;
 
 import com.softserve.edu.dao.ElementDAO;
 import com.softserve.edu.service.ICRUDService;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Service
 public abstract class AbstractCRUDService<E> implements ICRUDService<E> {
     private ElementDAO<E> elementDAO;
 
@@ -12,22 +15,27 @@ public abstract class AbstractCRUDService<E> implements ICRUDService<E> {
         this.elementDAO = elementDAO;
     }
 
-    public void addElement(E element){
+    @Transactional
+    public void addElement(E element) {
         elementDAO.addElement(element);
     }
 
+    @Transactional
     public void updateElement(E element) {
         elementDAO.updateElement(element);
     }
 
+    @Transactional
     public E getElementByID(int elementID) {
-       return (E)elementDAO.getElementByID(elementID);
+        return elementDAO.getElementByID(elementID);
     }
 
+    @Transactional
     public List<E> getAllElements() {
         return elementDAO.getAllElements();
     }
 
+    @Transactional
     public void deleteElement(E element) {
         elementDAO.deleteElement(element);
     }

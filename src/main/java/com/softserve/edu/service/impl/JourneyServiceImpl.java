@@ -1,16 +1,17 @@
 package com.softserve.edu.service.impl;
 
-import com.softserve.edu.dao.impl.JourneyDAOImpl;
+import com.softserve.edu.dao.JourneyDAO;
 import com.softserve.edu.entity.Journey;
-import com.softserve.edu.service.impl.AbstractCRUDService;
+import com.softserve.edu.service.JourneyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JourneyService extends AbstractCRUDService<Journey> {
+public class JourneyServiceImpl extends AbstractCRUDService<Journey> implements JourneyService {
 
     @Autowired
-    public JourneyService(JourneyDAOImpl journeyDAO) {
+    public JourneyServiceImpl(JourneyDAO journeyDAO) {
         super(journeyDAO);
     }
+
 }

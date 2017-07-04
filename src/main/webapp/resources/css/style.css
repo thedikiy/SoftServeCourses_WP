@@ -48,8 +48,7 @@
     background-color: whitesmoke;
 }
 
-.submit_button{
-    background-color: #4CAF50;
+.button {
     border: none;
     color: white;
     padding: 10px 20px;
@@ -61,7 +60,15 @@
     cursor: pointer;
 }
 
-.submit_button:hover{
+.submit_button{
+    background-color: #4CAF50;
+}
+
+.delete_button{
+    background-color: red;
+}
+
+.button:hover{
     text-decoration:none;
     color: white;
 }

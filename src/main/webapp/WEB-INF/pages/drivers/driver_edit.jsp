@@ -19,7 +19,8 @@
                    value=${driver.licenceExpire}><Br>
             <label for="phoneNumber">Номер телефона</label>
             <input id="phoneNumber" class="form-control" name="phoneNumber" type="text" value="${driver.phoneNumber}"><Br>
-            <input class="submit_button" type="submit" value="Сохранить">
+            <%@include file="/resources/static/check_errors.jsp"%>
+            <input class="button submit_button" type="submit" value="Сохранить">
         </form>
     </div>
 </div>

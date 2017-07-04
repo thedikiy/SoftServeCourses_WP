@@ -34,7 +34,7 @@
                 </tbody>
             </table>
         </div>
-        <button class="btn"><a href="/passenger/edit">Добавить...</a></button>
+        <a class="button submit_button" href="/passenger/edit">Добавить...</a>
     </div>
 </div>
 </body>
