@@ -41,6 +41,7 @@ public abstract class AbstractCRUDService<E> implements ICRUDService<E> {
         elementDAO.deleteElement(element);
     }
 
+    @Transactional
     public List<E> findByMapRequest(Map<String, String> request) {
         return elementDAO.findByMapRequest(request);
     }

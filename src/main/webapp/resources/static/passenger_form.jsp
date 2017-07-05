@@ -1,4 +1,3 @@
-<form action="${action}" method="post">
     <input type="hidden" name="passengerID"
            value="${passenger.passengerID}">
     <label for="passengerName">Имя</label>
@@ -13,4 +12,3 @@
            type="text" value="${passenger.phoneNumber}"><Br>
     <%@include file="/resources/static/check_errors.jsp"%>
     <input name="submit" class="button submit_button" type="submit" value="Сохранить">
-</form>

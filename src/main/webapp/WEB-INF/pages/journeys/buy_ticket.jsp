@@ -22,7 +22,13 @@
                    value="Выбрать">
         </form>
     </div>
-    <div class="col-md-4"><%@include file="/resources/static/passenger_form.jsp"%></div>
+    <div class="col-md-4">
+    <form action="${action}" method="post">
+     <input type="hidden" name="journeyID" value="${journeyID}"/>
+    <%@include file="/resources/static/passenger_form.jsp"%>
+    </form></div>
+      <c:if test="${success}"><h2 class="new-line col-md-8">Заказ
+      был добавлен в обработку</h2></c:if>
 </div>
 </body>
 </html>

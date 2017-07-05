@@ -33,6 +33,8 @@ public class JourneyController extends AbstractController {
     private BusService busService;
     private PassengerService passengerService;
     private ModelMapper mapper;
+    @Autowired
+    PassengerController passengerController;
 
     @RequestMapping(value = "/journey/list", method = RequestMethod.GET)
     public String getAllJourneys(Model model) {
@@ -110,6 +112,7 @@ public class JourneyController extends AbstractController {
         model.addAttribute("journeyID", journeyID);
         model.addAttribute("action", "/journey/buy_ticket");
         model.addAttribute("passengers", passengerService.getAllElements());
+        model.addAttribute("passenger", new Passenger());
         return "/journeys/buy_ticket";
     }
 
@@ -118,13 +121,22 @@ public class JourneyController extends AbstractController {
                             @ModelAttribute("passengerID") int passengerId,
                             @ModelAttribute("submit")String action,
                             @ModelAttribute @Valid Passenger passenger,
-                            BindingResult result, Errors errors, Model model) {
+                            BindingResult result, Errors errors, Model model){
         Journey journey =  journeyService.getElementByID(journeyID);
-        journey.getPassengers().add(passengerService.getElementByID(passengerId));
+        if (action.equals("Сохранить")) {
+            passengerController.editOrCreatePassenger
+                    (passenger, result, errors, model);
+            passengerService.getElementByID(passenger.getPassengerID());
+            passengerId = passenger.getPassengerID();
+        }
+        if (!result.hasErrors()) {
+            model.addAttribute("success",true);
+        }
+        journey.getPassengers().add(passengerService.getElementByID
+                (passengerId));
         journeyService.updateElement(journey);
-        return "redirect:/journey/list";
+        return showBuyTicketForm(journeyID, model);
     }
-
 
     private JourneyDTO convertToDto(Journey journey) {
         return mapper.map(journey, JourneyDTO.class);

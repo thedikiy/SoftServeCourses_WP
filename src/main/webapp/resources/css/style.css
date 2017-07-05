@@ -73,6 +73,11 @@
     color: white;
 }
 
+.new-line{
+clear:left;
+text-align:center;
+}
+
 .error_message {
     color: red;
 }
