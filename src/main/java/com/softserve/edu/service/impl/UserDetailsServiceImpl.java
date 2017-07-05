@@ -6,18 +6,13 @@ import com.softserve.edu.entity.User;
 import com.softserve.edu.entity.enums.Role;
 import com.softserve.edu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.NoResultException;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 @Service
 public class UserDetailsServiceImpl extends AbstractCRUDService<User> implements
@@ -48,56 +43,27 @@ public class UserDetailsServiceImpl extends AbstractCRUDService<User> implements
     }
 
     private boolean isUserExists(UserDTO user) {
-        try {
-            loadUserByUsername(user.getUsername());
-        } catch (NoResultException e) {
-            return false;
-        }
-        return true;
+        return userDAO.findUserByUsername(user.getUsername()) != null;
     }
 
     @Transactional
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) {
         User user = userDAO.findUserByUsername(username);
+        if (user == null) {
+            user = new User();
+        }
         return new UserDetailsImpl(user);
     }
 
-    private class UserDetailsImpl implements UserDetails {
-        private User user;
-
-        public UserDetailsImpl(User user) {
-            this.user = user;
+    public User getCurrentUser() {
+        SecurityContext context = SecurityContextHolder.getContext();
+        if (context == null) {
+            return null;
         }
-
-        public Collection<? extends GrantedAuthority> getAuthorities() {
-            Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
-            authorities.add(new
-                    SimpleGrantedAuthority(user.getRole().toString()));
-            return authorities;
+        Authentication authentication = context.getAuthentication();
+        if (authentication == null) {
+            return null;
         }
-
-        public String getPassword() {
-            return user.getPassword();
-        }
-
-        public String getUsername() {
-            return user.getUsername();
-        }
-
-        public boolean isAccountNonExpired() {
-            return true;
-        }
-
-        public boolean isAccountNonLocked() {
-            return true;
-        }
-
-        public boolean isCredentialsNonExpired() {
-            return true;
-        }
-
-        public boolean isEnabled() {
-            return true;
-        }
+        return ((UserDetailsImpl) authentication.getPrincipal()).getUser();
     }
 }

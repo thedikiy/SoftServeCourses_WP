@@ -13,13 +13,18 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class JourneyController extends AbstractController {
@@ -29,10 +34,19 @@ public class JourneyController extends AbstractController {
     private PassengerService passengerService;
     private ModelMapper mapper;
 
-    @RequestMapping("/journey/list")
+    @RequestMapping(value = "/journey/list", method = RequestMethod.GET)
     public String getAllJourneys(Model model) {
         List<Journey> journeys = journeyService.getAllElements();
-        model.addAttribute(journeys);
+        model.addAttribute("journeys", journeys);
+        return "/journeys/journey_list";
+    }
+
+    @RequestMapping(value = "/journey/list", method = RequestMethod.POST)
+    public String findJourneys(@RequestBody MultiValueMap<String, String> formData,
+                               Model model) {
+        Map<String, String> request = formData.toSingleValueMap();
+        List<Journey> journeys = journeyService.findByMapRequest(request);
+        model.addAttribute("journeys", journeys);
         return "/journeys/journey_list";
     }
 
@@ -50,7 +64,7 @@ public class JourneyController extends AbstractController {
             @RequestParam(value = "id", required = false) String journeyID, Model
             model) {
         Journey journey = null;
-        if (journeyID == null||journeyID.equals("0")) {
+        if (journeyID == null || journeyID.equals("0")) {
             journey = new Journey();
         } else {
             journey = journeyService.getElementByID(Integer
@@ -91,6 +105,27 @@ public class JourneyController extends AbstractController {
         return "redirect:/journey/list";
     }
 
+    @RequestMapping(value = "/journey/buy_ticket", method = RequestMethod.GET)
+    public String showBuyTicketForm(@RequestParam(value = "id") int journeyID, Model model) {
+        model.addAttribute("journeyID", journeyID);
+        model.addAttribute("action", "/journey/buy_ticket");
+        model.addAttribute("passengers", passengerService.getAllElements());
+        return "/journeys/buy_ticket";
+    }
+
+    @RequestMapping(value = "/journey/buy_ticket", method = RequestMethod.POST)
+    public String buyTicket(@ModelAttribute("journeyID") int journeyID,
+                            @ModelAttribute("passengerID") int passengerId,
+                            @ModelAttribute("submit")String action,
+                            @ModelAttribute @Valid Passenger passenger,
+                            BindingResult result, Errors errors, Model model) {
+        Journey journey =  journeyService.getElementByID(journeyID);
+        journey.getPassengers().add(passengerService.getElementByID(passengerId));
+        journeyService.updateElement(journey);
+        return "redirect:/journey/list";
+    }
+
+
     private JourneyDTO convertToDto(Journey journey) {
         return mapper.map(journey, JourneyDTO.class);
     }
@@ -114,7 +149,8 @@ public class JourneyController extends AbstractController {
     @Autowired
     public JourneyController(JourneyService journeyService,
                              DriverService driverService, BusService busService,
-                             PassengerService passengerService, ModelMapper mapper) {
+                             PassengerService passengerService,
+                             ModelMapper mapper) {
         this.journeyService = journeyService;
         this.driverService = driverService;
         this.busService = busService;

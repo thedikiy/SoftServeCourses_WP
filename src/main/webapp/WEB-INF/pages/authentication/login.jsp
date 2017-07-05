@@ -7,7 +7,7 @@
 <%@include file="/resources/static/nav.jsp"%>
 <div class="content"><form action="/login" method='POST'>
 <h1>Вход в систему</h1>
-    <c:if test="${param.error.equals('true')}"><p class="error">
+    <c:if test="${param.error.equals('true')}"><p class="error_message">
         <fmt:message key="login.validation.error.mismatch"/></p></c:if>
     <table>
         <tr>

@@ -14,9 +14,8 @@
     <p>Время прибытия: <fmt:formatDate value="${journey.arrivingDate}"
                                        pattern="yyyy-MM-dd"/></p></p>
     <sec:authorize access="hasAnyAuthority('ADMIN','MANAGER')">
-        Водитель: <a
-            href="/driver?id=${journey.driver.driverID}">${journey.driver.driverName}
-            ${journey.driver.driverSurname}</a>
+        Водитель: <a href="/driver?id=${journey.driver.driverID}">
+            ${journey.driver.driverName} ${journey.driver.driverSurname}</a>
         <p>Автобус: <a href="/bus?id=${journey.bus.busID}">
                 ${journey.bus.busModel}</a></p>
         <p>Пассажиры:</p>

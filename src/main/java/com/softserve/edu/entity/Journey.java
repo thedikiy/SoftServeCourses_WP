@@ -31,8 +31,8 @@ public class Journey {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "JOURNEYS_PASSENGERS", joinColumns = @JoinColumn(name =
-            "PASSENGER_ID"), inverseJoinColumns = @JoinColumn(
-            name = "JOURNEY_ID"))
+            "JOURNEY_ID"), inverseJoinColumns = @JoinColumn(
+            name = "PASSENGER_ID"))
     private Set<Passenger> passengers = new HashSet<Passenger>();
 
     public Set<Passenger> getPassengers() {

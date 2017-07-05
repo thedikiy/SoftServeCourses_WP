@@ -7,8 +7,12 @@
 <%@include file="/resources/static/nav.jsp" %>
 <div class="content">
     <h1>Список Автобусов</h1>
+    <form action="/bus/list" method="post">
+        <input name="busModel" placeholder="Модель автобуса" type="text"/>
+        <input name="registrationNumber" placeholder="Регистрационный номер" type="text"/>
+        <input type="submit" value = "Найти"/>
+    </form>
     <div class="col-md-6">
-
         <div class="row">
             <table class="table table-striped">
                 <thead>

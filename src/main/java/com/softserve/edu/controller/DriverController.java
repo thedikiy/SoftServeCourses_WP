@@ -5,15 +5,18 @@ import com.softserve.edu.service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class DriverController extends AbstractController {
@@ -25,10 +28,20 @@ public class DriverController extends AbstractController {
         this.driverService = driverService;
     }
 
-    @RequestMapping("/driver/list")
+    @RequestMapping(value = "/driver/list", method = RequestMethod.GET)
     public String getAllDrivers(Model model) {
         List<Driver> drivers = driverService.getAllElements();
-        model.addAttribute(drivers);
+        model.addAttribute("drivers",
+                drivers);
+        return "/drivers/driver_list";
+    }
+
+    @RequestMapping(value = "/driver/list", method = RequestMethod.POST)
+    public String findDrivers(@RequestBody MultiValueMap<String, String> formData,
+                              Model model) {
+        Map<String, String> request = formData.toSingleValueMap();
+        List<Driver> drivers = driverService.findByMapRequest(request);
+        model.addAttribute("drivers", drivers);
         return "/drivers/driver_list";
     }
 
@@ -46,7 +59,7 @@ public class DriverController extends AbstractController {
             @RequestParam(value = "id", required = false) String driverID, Model
             model) {
         Driver driver = null;
-        if (driverID == null||driverID.equals("0")) {
+        if (driverID == null || driverID.equals("0")) {
             driver = new Driver();
         } else {
             driver = driverService.getElementByID(Integer.parseInt(driverID));

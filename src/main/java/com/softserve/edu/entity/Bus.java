@@ -75,4 +75,32 @@ public class Bus {
     public void setNextTI(Date nextTI) {
         this.nextTI = nextTI;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Bus bus = (Bus) o;
+
+        if (busID != bus.busID) return false;
+        if (!busModel.equals(bus.busModel)) return false;
+        if (!registrationNumber.equals(bus.registrationNumber)) return false;
+        if (lastTI != null ? !lastTI.equals(bus.lastTI) : bus.lastTI != null)
+            return false;
+        if (nextTI != null ? !nextTI.equals(bus.nextTI) : bus.nextTI != null)
+            return false;
+        return journeys != null ? journeys.equals(bus.journeys) : bus.journeys == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = busID;
+        result = 31 * result + busModel.hashCode();
+        result = 31 * result + registrationNumber.hashCode();
+        result = 31 * result + (lastTI != null ? lastTI.hashCode() : 0);
+        result = 31 * result + (nextTI != null ? nextTI.hashCode() : 0);
+        result = 31 * result + (journeys != null ? journeys.hashCode() : 0);
+        return result;
+    }
 }

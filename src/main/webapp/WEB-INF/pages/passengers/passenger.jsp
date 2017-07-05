@@ -9,6 +9,7 @@
 <h1>Пассажир №${passenger.passengerID}</h1>
 <p>Имя: ${passenger.passengerName}</p>
 <p>Фамилия: ${passenger.passengerSurname}</p>
+    <p>Номер телефона: ${passenger.phoneNumber}</p>
 <p>Рейсы:</p>
 <c:forEach items="${passenger.journeys}" var="journey">
     <p><a href="/journey?id=${journey.journeyID}">${journey.fromPlace}

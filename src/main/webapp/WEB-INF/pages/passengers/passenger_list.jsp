@@ -6,6 +6,11 @@
 <body>
 <%@include file="/resources/static/nav.jsp" %>
 <div class="content"><h1>Список Пассажиров</h1>
+    <form action="/passenger/list" method="post">
+        <input name="passengerName" placeholder="Имя" type="text"/>
+        <input name="passengerSurname" placeholder="Фамилия" type="text"/>
+        <input type="submit" value = "Найти"/>
+    </form>
     <div class="col-md-6">
         <div class="row">
             <table class="table table-striped">

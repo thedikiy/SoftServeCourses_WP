@@ -12,5 +12,4 @@ public class ErrorController {
     public String accessDenied() {
         return "/error_pages/403_error";
     }
-
 }

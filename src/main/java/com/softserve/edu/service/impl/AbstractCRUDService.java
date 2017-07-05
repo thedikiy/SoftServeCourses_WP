@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public abstract class AbstractCRUDService<E> implements ICRUDService<E> {
@@ -38,5 +39,9 @@ public abstract class AbstractCRUDService<E> implements ICRUDService<E> {
     @Transactional
     public void deleteElement(E element) {
         elementDAO.deleteElement(element);
+    }
+
+    public List<E> findByMapRequest(Map<String, String> request) {
+        return elementDAO.findByMapRequest(request);
     }
 }

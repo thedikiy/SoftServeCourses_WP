@@ -30,10 +30,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/bus/**", "/driver/**","/journey/edit*",
-                        "/journey/delete")
+                .antMatchers("/bus/*", "/driver/*", "/journey/edit*",
+                        "/journey/delete*")
                 .hasAnyAuthority("ADMIN", "MANAGER")
-                .antMatchers("/passenger/**")
+                .antMatchers("/passenger/**", "/journey/buy*")
                 .hasAnyAuthority("ADMIN", "MANAGER", "PASSENGER")
                 .antMatchers("/login*").anonymous()
                 .and().exceptionHandling().accessDeniedPage("/403")

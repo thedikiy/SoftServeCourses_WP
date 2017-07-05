@@ -32,7 +32,7 @@ public class RegistrationController {
         UserDTO userDTO = new UserDTO();
         model.addAttribute("roles", Role.values());
         model.addAttribute(userDTO);
-        return "registration";
+        return "authentication/registration";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
@@ -43,7 +43,7 @@ public class RegistrationController {
         if (!result.hasErrors()) {
             if (userService.createNewAccount(userDTO) == null) {
                 model.addAttribute("errors",
-                        Arrays.asList(new FieldError("user","username",USER_EXISTS)));
+                        Arrays.asList(new FieldError("user", "username", USER_EXISTS)));
                 return showRegistrationForm(model);
             }
 
@@ -51,7 +51,12 @@ public class RegistrationController {
             model.addAttribute("errors", errors.getAllErrors());
             return showRegistrationForm(model);
         }
-        return "login";
+        return "authentication/login";
+    }
+
+    @RequestMapping("/login")
+    public String showLoginPage() {
+        return "authentication/login";
     }
 
 }

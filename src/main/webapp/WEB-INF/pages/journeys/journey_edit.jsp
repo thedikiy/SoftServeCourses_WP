@@ -24,15 +24,17 @@
             <select id="driver" class="form-control" name="driverID" size=1>
                 <option name="driverID" value="-1">Выберите Водителя</option>
                 <c:forEach items="${drivers}" var="driver">
-                    <option value="${driver.driverID}">${driver.driverName}
-                            ${driver.driverSurname}</option>
+                    <option value="${driver.driverID}"
+                            <c:if test="${journey.driverID == driver.driverID}">selected</c:if>>
+                        ${driver.driverName} ${driver.driverSurname}</option>
                 </c:forEach>
             </select><br/>
             <label for="bus">Автобус</label>
             <select id="bus" class="form-control" name="busID" size=1>
                 <option value="-1">Выберите автобус</option>
                 <c:forEach items="${buses}" var="bus">
-                    <option value="${bus.busID}">${bus.busModel}</option
+                    <option value="${bus.busID}" <c:if test="${journey.busID == bus.busID}">selected</c:if>>
+                            ${bus.busModel}</option>
                 </c:forEach>
             </select><br/>
             <input class="button submit_button" type="submit" name="action" value="Сохранить">

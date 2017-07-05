@@ -5,4 +5,6 @@ import com.softserve.edu.entity.User;
 
 public interface UserService extends ICRUDService<User> {
     User createNewAccount(UserDTO userDTO);
+
+    User getCurrentUser();
 }

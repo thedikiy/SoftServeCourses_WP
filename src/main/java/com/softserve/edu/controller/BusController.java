@@ -5,15 +5,18 @@ import com.softserve.edu.service.BusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class BusController extends AbstractController {
@@ -25,12 +28,22 @@ public class BusController extends AbstractController {
         this.busService = busService;
     }
 
-    @RequestMapping("/bus/list")
+    @RequestMapping(value = "/bus/list", method = RequestMethod.GET)
     public String getAllBuses(Model model) {
         List<Bus> buses = busService.getAllElements();
         model.addAttribute("buses", buses);
         return "buses/bus_list";
     }
+
+    @RequestMapping(value = "/bus/list", method = RequestMethod.POST)
+    public String findBuses(@RequestBody MultiValueMap<String, String> formData,
+                            Model model) {
+        Map<String, String> request = formData.toSingleValueMap();
+        List<Bus> buses = busService.findByMapRequest(request);
+        model.addAttribute("buses", buses);
+        return "buses/bus_list";
+    }
+
 
     @RequestMapping("/bus")
     public String showSelectedBusInfo(
@@ -45,7 +58,7 @@ public class BusController extends AbstractController {
             @RequestParam(value = "id", required = false) String busID, Model
             model) {
         Bus bus = null;
-        if (busID == null||busID.equals("0")) {
+        if (busID == null || busID.equals("0")) {
             bus = new Bus();
         } else {
             bus = busService.getElementByID(Integer.parseInt(busID));

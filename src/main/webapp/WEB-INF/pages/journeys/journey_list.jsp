@@ -7,6 +7,11 @@
 <%@include file="/resources/static/nav.jsp" %>
 <div class="content">
     <h1>Список рейсов</h1>
+    <form action="/journey/list" method="post">
+        <input name="fromPlace" placeholder="Место отправления" type="text"/>
+        <input name="destination" placeholder="Место прибытия" type="text"/>
+        <input type="submit" value = "Найти"/>
+    </form>
     <div class="col-md-6">
         <div class="row">
             <table class="table table-striped">
@@ -18,7 +23,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${journeyList}" var="journey"
+                <c:forEach items="${journeys}" var="journey"
                            varStatus="count">
                     <tr>
                         <th class="col-md-1">${count.index + 1}</th>
